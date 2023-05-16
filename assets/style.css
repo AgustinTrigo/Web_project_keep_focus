@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F1F6F9;
+}
+
+.navbar{
+    background-color: #212A3E;
+    position: relative;
+    top: 0px;
+    height: 60px;
+}
+
+.navbar-btn{
+    position: relative;
+    top: 15px;
+    left: 15px;
+    height: 30px;
+}
+
+.navbar-btn div{
+    background-color: white;
+    width: 35px;
+    height: 4px;
+    margin-bottom: 5px;
+}
+
+.topbar{
+    position: relative;
+    top: 0px;
+}
+
+.midbar{
+    position: relative;
+    top: 2px;
+}
+
+.bottombar{
+    position: relative;
+    top: 4px;
+}
