@@ -20,6 +20,10 @@ body{
     top: 15px;
     left: 15px;
     height: 30px;
+    background-color: #212A3E;
+    border: none;
+    transition-duration: 0.075s;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.65, 0.20);
 }
 
 .navbar-btn div{
@@ -42,4 +46,8 @@ body{
 .bottombar{
     position: relative;
     top: 4px;
+}
+
+.active .navbar-btn{
+    background-color: red;
 }
