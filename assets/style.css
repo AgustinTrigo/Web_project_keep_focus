@@ -16,38 +16,60 @@ body{
 }
 
 .navbar-btn{
+    display: inline-block;
     position: relative;
     top: 15px;
     left: 15px;
     height: 30px;
-    background-color: #212A3E;
+    background-color: transparent;
     border: none;
     transition-duration: 0.075s;
-    transition-timing-function: cubic-bezier(0.55, 0.055, 0.65, 0.20);
+    transition-timing-function: ease;
 }
 
-.navbar-btn div{
+.navbar-btn-box{
+    position: relative;
     background-color: white;
-    width: 35px;
+    width: 32px;
     height: 4px;
     margin-bottom: 5px;
 }
 
-.topbar{
-    position: relative;
-    top: 0px;
+.navbar-btn-inner::before, .navbar-btn-inner::after{
+    content: "";
+    display: block;
+    background-color: white;
+    width: 32px;
+    height: 4px;
+    position: absolute;
 }
 
-.midbar{
-    position: relative;
-    top: 2px;
+.navbar-btn-inner::before{
+    top: -10px;
+    transition: top 0.075s 0.12s ease, opacity 0.075s ease; 
 }
 
-.bottombar{
-    position: relative;
-    top: 4px;
+.navbar-btn-inner::after{
+    bottom: -10px;
+    transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.active .navbar-btn{
-    background-color: red;
+.active .navbar-btn-box{
+    transform: rotate(45deg);
+    transition-delay: 0.12s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); 
 }
+
+.active .navbar-btn-inner::before{
+    top: 0;
+    opacity: 0;
+    transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+}
+
+.active .navbar-btn-inner::after{
+    transform: rotate(-90deg);
+    bottom: 0;
+    transition: bottom 0.075s ease, transform 0.075s 0.12s ease;
+}
+
+
