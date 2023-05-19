@@ -12,9 +12,12 @@ body{
     background-color: #212A3E;
     position: relative;
     top: 0px;
-    height: 60px;
+    height: 56px;
+    transition-duration: 0.45s;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+/* Boton menu hamburguesa */
 .navbar-btn{
     display: inline-block;
     position: relative;
@@ -46,30 +49,42 @@ body{
 
 .navbar-btn-inner::before{
     top: -10px;
-    transition: top 0.075s 0.12s ease, opacity 0.075s ease; 
+    transition: top 0.075s 0.1s ease, opacity 0.075s ease; 
 }
 
 .navbar-btn-inner::after{
     bottom: -10px;
-    transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: bottom 0.075s 0.1s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
 .active .navbar-btn-box{
     transform: rotate(45deg);
-    transition-delay: 0.12s;
+    transition-delay: 0.1s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); 
 }
 
 .active .navbar-btn-inner::before{
     top: 0;
     opacity: 0;
-    transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+    transition: top 0.075s ease, opacity 0.075s 0.1s ease;
 }
 
 .active .navbar-btn-inner::after{
     transform: rotate(-90deg);
     bottom: 0;
-    transition: bottom 0.075s ease, transform 0.075s 0.12s ease;
+    transition: bottom 0.075s ease, transform 0.075s 0.1s ease;
 }
+
+/*--*/
+/* Navbar menu */
+.display-menu{
+    height: 100vh;
+}
+
+
+
+
+
+
 
 
