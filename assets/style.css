@@ -17,6 +17,10 @@ body{
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+a{
+    text-decoration: none;
+}
+
 /* Boton menu hamburguesa */
 .navbar-btn{
     display: inline-block;
@@ -91,13 +95,17 @@ body{
 
 .navbar-menu li{
     list-style: none;
-    color: rgb(255, 255, 255);
+    
     margin-bottom: 40px;
     font-family: 'Outfit', sans-serif;
     font-weight: 200;
     font-size: 1.1em;
-
 }
+
+.navbar-menu a{
+    color: white;
+}
+
 
 
 
