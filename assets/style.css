@@ -40,6 +40,7 @@ a{
     width: 32px;
     height: 4px;
     margin-bottom: 5px;
+    border-radius: 4px;
 }
 
 .navbar-btn-inner::before, .navbar-btn-inner::after{
@@ -49,6 +50,7 @@ a{
     width: 32px;
     height: 4px;
     position: absolute;
+    border-radius: 4px;
 }
 
 .navbar-btn-inner::before{
@@ -95,10 +97,9 @@ a{
 
 .navbar-menu li{
     list-style: none;
-    
     margin-bottom: 40px;
     font-family: 'Outfit', sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 1.1em;
 }
 
@@ -106,8 +107,46 @@ a{
     color: white;
 }
 
+/*--*/
+/* Main */
 
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr 150px;
+    grid-template-areas: 
+    "top"
+    "mid"
+    "bottom";
+    gap: 0px 0px;
+    height: clamp(500px, 100vh, 743px);
+    justify-items: center;
+}
 
+.top-container{
+    grid-area: top;
+}
+
+.mid-container{
+    grid-area: mid;
+}
+
+.bottom-container{
+    grid-area: bottom;
+}
+
+.contador{
+    position: relative;
+    top: 30%;
+    border: 1px solid black;
+    width: 179px;
+    height: 50px;
+    text-align: center;
+}
+
+.contadorBtn{
+    margin-top: 50px;
+}
 
 
 
