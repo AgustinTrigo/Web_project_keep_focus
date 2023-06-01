@@ -18,37 +18,36 @@ navbarBtn.addEventListener("click", ()=>{
         navbarMenu.removeChild(navbarMenuList);
     }
 })
-
 let cronometro = document.getElementById("timer");
-let botonCronometro = document.getElementById("timerBtn");
-let botonPararCronometro = document.getElementById("timerBtnStop")
-const fechaHora = new Date();
-
-let horas = fechaHora.getHours();
-let minutos = fechaHora.getMinutes();
-let segundos = fechaHora.getSeconds();
-let milisegundos = fechaHora.getMilliseconds();
-
-console.log(`${horas}:${minutos}:${segundos}`);
-
+let startBtn = document.getElementById("timerBtn");
+let pauseBtn = document.getElementById("timerStopBtn");
 let isRunning = false;
 
-botonCronometro.addEventListener("click", ()=>{
-    isRunning = false;
-    let intervalo = setInterval(()=>{
-        if(isRunning === false){
-            const fechaHora = new Date();
-            cronometro.innerHTML = `${fechaHora.getHours()}:${fechaHora.getMinutes()}:${fechaHora.getSeconds()}:${fechaHora.getMilliseconds()}`;
-        }else{
-            clearInterval(intervalo);
-        }
-        
-    },1)
+/*
+let tiempoInicio = new Date();
+let dato = tiempoInicio.getTime();
+*/
+startBtn.addEventListener("click", ()=>{
+    let tiempoInicio = new Date();
+    let dato = tiempoInicio.getTime();
+    setInterval(()=>{ 
 
+        let ahora = new Date();
+        let milisegundos = ahora.getTime() - dato;
+       
+        let minutos = parseInt(milisegundos / 1000 / 60);
+        milisegundos -= minutos * 60 * 1000;
+        
+        let segundos = parseInt(milisegundos / 1000);
+        
+        cronometro.innerHTML = `${minutos}:${segundos}:${milisegundos}` 
+
+        //console.log(minutos + " / " + segundos + " / " + milisegundos);
     
+    },100)
 });
 
-botonPararCronometro.addEventListener("click", ()=>{
+pauseBtn.addEventListener("click", ()=>{
     isRunning = true;
 })
 
