@@ -23,26 +23,25 @@ let startBtn = document.getElementById("timerBtn");
 let pauseBtn = document.getElementById("timerStopBtn");
 let isRunning = false;
 
-/*
-let tiempoInicio = new Date();
-let dato = tiempoInicio.getTime();
-*/
-startBtn.addEventListener("click", ()=>{
-    let tiempoInicio = new Date();
-    let dato = tiempoInicio.getTime();
-    setInterval(()=>{ 
 
-        let ahora = new Date();
-        let milisegundos = ahora.getTime() - dato;
+const agregarCero = (numero) =>{
+    return numero < 10 ? "0" + numero : "" + numero;
+}
+
+startBtn.addEventListener("click", ()=>{
+    
+    let tiempoInicio = new Date().getTime(); // <- milisegundos al cliclear play
+    
+    setInterval(()=>{ 
+        
+        let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
+        let milisegundos = tiempoActual - tiempoInicio;
        
         let minutos = parseInt(milisegundos / 1000 / 60);
         milisegundos -= minutos * 60 * 1000;
+        let segundos = milisegundos / 1000;
         
-        let segundos = parseInt(milisegundos / 1000);
-        
-        cronometro.innerHTML = `${minutos}:${segundos}:${milisegundos}` 
-
-        //console.log(minutos + " / " + segundos + " / " + milisegundos);
+        cronometro.innerHTML = `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(1))}`
     
     },100)
 });
