@@ -21,32 +21,49 @@ navbarBtn.addEventListener("click", ()=>{
 let cronometro = document.getElementById("timer");
 let startBtn = document.getElementById("timerBtn");
 let pauseBtn = document.getElementById("timerStopBtn");
-let isRunning = false;
 
+let isRunning = false;
+let interval;
+let diferenciaTiempo = 0;
+
+cronometro.innerHTML = "00:00:00";
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;
 }
 
-startBtn.addEventListener("click", ()=>{
-    
-    let tiempoInicio = new Date().getTime(); // <- milisegundos al cliclear play
-    
-    setInterval(()=>{ 
-        
-        let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
-        let milisegundos = tiempoActual - tiempoInicio;
-       
-        let minutos = parseInt(milisegundos / 1000 / 60);
-        milisegundos -= minutos * 60 * 1000;
-        let segundos = milisegundos / 1000;
-        
-        cronometro.innerHTML = `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(1))}`
-    
-    },100)
-});
+const generarTiempo = (milisegundos) =>{
+    let minutos = parseInt(milisegundos / 1000 / 60);
+    milisegundos -= minutos * 60 * 1000;
+    let segundos = milisegundos / 1000;
+    return `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(2))}`
+}
 
-pauseBtn.addEventListener("click", ()=>{
+const runTimer = () =>{
+
+    if(!isRunning){
+        let tiempoInicio = new Date().getTime(); // <- milisegundos al cliclear play
+        
+        interval = setInterval(()=>{ 
+            let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
+            let milisegundos = tiempoActual - tiempoInicio;
+            cronometro.innerHTML = generarTiempo(milisegundos);
+            
+        },100)
+    }
+
     isRunning = true;
-})
+    isRunning ? startBtn.style.opacity = "0" : "";
+    
+}
+
+const pauseTimer = () => {
+    let tiempoEnPausa = new Date().getTime();
+
+    clearInterval(interval);
+    console.log(tiempoEnPausa);
+}
+
+startBtn.addEventListener("click", () =>{runTimer()});
+pauseBtn.addEventListener("click", () =>{pauseTimer()});
 
