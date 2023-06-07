@@ -39,10 +39,12 @@ const generarTiempo = (milisegundos) =>{
     return `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(2))}`
 }
 
+
 const runTimer = () =>{
     
     if(!isRunning){
-        tiempoTranscurrido = new Date().getTime(); // <- milisegundos al cliclear play
+        tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; // <- milisegundos al cliclear play
+        
         
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
@@ -55,14 +57,15 @@ const runTimer = () =>{
     isRunning = true;
     isRunning ? startBtn.style.opacity = "0" : "";
     
+    
 }
 
 const pauseTimer = () => {
     let tiempoEnPausa = new Date().getTime();
-    console.log(tiempoTranscurrido)
-    let diferencia = tiempoEnPausa - tiempoTranscurrido;
+    
+    diferenciaTiempo = tiempoEnPausa - tiempoTranscurrido;
     clearInterval(interval);
-    console.log(diferencia);
+    
     isRunning = false;
     !isRunning ? startBtn.style.opacity = "1" : "";
 }
