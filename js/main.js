@@ -25,7 +25,7 @@ let pauseBtn = document.getElementById("timerStopBtn");
 let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
-
+let tiempoTranscurrido  = 0;
 cronometro.innerHTML = "00:00:00";
 
 const agregarCero = (numero) =>{
@@ -40,14 +40,14 @@ const generarTiempo = (milisegundos) =>{
 }
 
 const runTimer = () =>{
-
+    
     if(!isRunning){
-        let tiempoInicio = new Date().getTime(); // <- milisegundos al cliclear play
+        tiempoTranscurrido = new Date().getTime(); // <- milisegundos al cliclear play
         
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
-            let milisegundos = tiempoActual - tiempoInicio;
-            cronometro.innerHTML = generarTiempo(milisegundos);
+            let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
+            cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             
         },100)
     }
@@ -59,9 +59,12 @@ const runTimer = () =>{
 
 const pauseTimer = () => {
     let tiempoEnPausa = new Date().getTime();
-
+    console.log(tiempoTranscurrido)
+    let diferencia = tiempoEnPausa - tiempoTranscurrido;
     clearInterval(interval);
-    console.log(tiempoEnPausa);
+    console.log(diferencia);
+    isRunning = false;
+    !isRunning ? startBtn.style.opacity = "1" : "";
 }
 
 startBtn.addEventListener("click", () =>{runTimer()});
