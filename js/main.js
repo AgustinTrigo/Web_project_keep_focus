@@ -18,15 +18,17 @@ navbarBtn.addEventListener("click", ()=>{
         navbarMenu.removeChild(navbarMenuList);
     }
 })
+
 let cronometro = document.getElementById("timer");
+let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
-let pauseBtn = document.getElementById("timerStopBtn");
+
 
 let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-cronometro.innerHTML = "00:00:00";
+cronometro.innerHTML = "00:00.00";
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;
@@ -43,21 +45,18 @@ const generarTiempo = (milisegundos) =>{
 const runTimer = () =>{
     
     if(!isRunning){
-        tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; // <- milisegundos al cliclear play
-        
-        
+        tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
         interval = setInterval(()=>{ 
-            let tiempoActual = new Date().getTime(); // <- milisegundos actualizados
+            let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
-            
         },100)
     }
 
     isRunning = true;
-    isRunning ? startBtn.style.opacity = "0" : "";
-    
-    
+    isRunning ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="lni lni-pause"></i></button>` : "";
+    let pauseBtn = document.getElementById("timerStopBtn");
+    pauseBtn.addEventListener("click", () =>{pauseTimer()});
 }
 
 const pauseTimer = () => {
@@ -67,9 +66,11 @@ const pauseTimer = () => {
     clearInterval(interval);
     
     isRunning = false;
-    !isRunning ? startBtn.style.opacity = "1" : "";
+    !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="lni lni-play"></i></button>` : "";
+    let startBtn = document.getElementById("timerBtn");
+    startBtn.addEventListener("click", () =>{runTimer()});
 }
 
 startBtn.addEventListener("click", () =>{runTimer()});
-pauseBtn.addEventListener("click", () =>{pauseTimer()});
+
 

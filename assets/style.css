@@ -129,6 +129,10 @@ a{
 
 .mid-container{
     grid-area: mid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .bottom-container{
@@ -136,17 +140,21 @@ a{
 }
 
 .contador{
-    position: relative;
-    top: 30%;
-    border: 1px solid black;
     width: 179px;
     height: 50px;
     text-align: center;
+    font-family: 'Outfit', sans-serif;
 }
 
-.contadorBtn{
-    margin-top: 50px;
+.lni{
+    font-size: 3em;
 }
+
+button{
+    border: none;
+    background-color: transparent;
+}
+
 
 
 
