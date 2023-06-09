@@ -28,7 +28,7 @@ let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-let limiteTiempo = 25;
+let limiteTiempo = 1;
 cronometro.innerHTML = "00:00";
 
 const agregarCero = (numero) =>{
@@ -76,13 +76,15 @@ const pauseTimer = () => {
 startBtn.addEventListener("click", () =>{runTimer()});
 
 function calcularPorcentaje(tiempo){
-	let minutos = parseInt(tiempo / 1000 / 60);
-    tiempo -= minutos * 60 * 1000;
-    let segundos = tiempo / 1000;
-	let porcentaje = (minutos * 100) / limiteTiempo;
-	if(porcentaje < 101){
-		progressBar.style.width = parseInt(porcentaje) + "%";
+	let porcentaje = (tiempo * 100) / conversorMilisengudos(limiteTiempo);
+	if(porcentaje <= 100){
+		progressBar.style.width = porcentaje.toFixed(2) + "%";
 	}
 }
 
+function conversorMilisengudos(minutosAms){
+	let limiteEnMs = minutosAms * 1000 * 60;
+	return limiteEnMs;
+
+}
 
