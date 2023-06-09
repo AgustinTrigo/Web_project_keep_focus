@@ -155,7 +155,17 @@ button{
     background-color: transparent;
 }
 
+.barContainer{
+    width: 280px;
+    height: 25px;
+    border: 1px solid black;
+}
 
+#bar{
+    width: 0%;
+    height: 100%;
+    background-color: black;
+}
 
 
 

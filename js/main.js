@@ -22,13 +22,14 @@ navbarBtn.addEventListener("click", ()=>{
 let cronometro = document.getElementById("timer");
 let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
-
+let progressBar = document.getElementById("bar");
 
 let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-cronometro.innerHTML = "00:00.00";
+let limiteTiempo = 25;
+cronometro.innerHTML = "00:00";
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;
@@ -38,7 +39,7 @@ const generarTiempo = (milisegundos) =>{
     let minutos = parseInt(milisegundos / 1000 / 60);
     milisegundos -= minutos * 60 * 1000;
     let segundos = milisegundos / 1000;
-    return `${agregarCero(minutos)}:${agregarCero(segundos.toFixed(2))}`
+    return `${agregarCero(minutos)}:${agregarCero(parseInt(segundos))}`
 }
 
 
@@ -49,6 +50,7 @@ const runTimer = () =>{
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
+            calcularPorcentaje(difTiempoTranscurrido);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
         },100)
     }
@@ -72,5 +74,15 @@ const pauseTimer = () => {
 }
 
 startBtn.addEventListener("click", () =>{runTimer()});
+
+function calcularPorcentaje(tiempo){
+	let minutos = parseInt(tiempo / 1000 / 60);
+    tiempo -= minutos * 60 * 1000;
+    let segundos = tiempo / 1000;
+	let porcentaje = (minutos * 100) / limiteTiempo;
+	if(porcentaje < 101){
+		progressBar.style.width = parseInt(porcentaje) + "%";
+	}
+}
 
 
