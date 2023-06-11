@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: #F1F6F9;
+    background-color: #ededed;
 }
 
 .navbar{
@@ -155,7 +155,8 @@ button{
     background-color: transparent;
 }
 
-.barContainer{
+
+/* .barContainer{
     width: 280px;
     height: 25px;
     border: 1px solid black;
@@ -165,6 +166,19 @@ button{
     width: 0%;
     height: 100%;
     background-color: black;
+} */
+
+.outsideCircle{
+    stroke: white;
+    fill: none;
+}
+
+.progressCircle{
+    fill:none;
+    stroke: black;
+    stroke-width: 10px;
+    transform: rotate(-90deg);
+    transform-origin: center;
 }
 
 

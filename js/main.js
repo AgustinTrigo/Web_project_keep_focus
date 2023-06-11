@@ -22,7 +22,13 @@ navbarBtn.addEventListener("click", ()=>{
 let cronometro = document.getElementById("timer");
 let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
-let progressBar = document.getElementById("bar");
+//let progressBar = document.getElementById("bar");
+//  Mostrar progreso usando forma de circulo
+let progressCircle = document.querySelector(".progressCircle")
+let progress = document.getElementById("progress")
+let radio = progressCircle.getAttribute("r")
+let circunferencia = radio * 2 * Math.PI;
+progress.style.strokeDasharray = circunferencia;
 
 let isRunning = false;
 let interval;
@@ -50,7 +56,7 @@ const runTimer = () =>{
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
-            calcularPorcentaje(difTiempoTranscurrido);
+            //calcularPorcentaje(difTiempoTranscurrido);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
         },100)
     }
