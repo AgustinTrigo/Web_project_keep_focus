@@ -129,6 +129,7 @@ a{
 
 .mid-container{
     grid-area: mid;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -137,6 +138,15 @@ a{
 
 .bottom-container{
     grid-area: bottom;
+}
+
+.btnsContainer{
+    position: absolute;
+    top: 35%;
+    left: 125px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
 }
 
 .contador{

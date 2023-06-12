@@ -22,13 +22,12 @@ navbarBtn.addEventListener("click", ()=>{
 let cronometro = document.getElementById("timer");
 let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
-//let progressBar = document.getElementById("bar");
 //  Mostrar progreso usando forma de circulo
-let progressCircle = document.querySelector(".progressCircle")
-let progress = document.getElementById("progress")
+let progressCircle = document.getElementById("progress")
 let radio = progressCircle.getAttribute("r")
 let circunferencia = radio * 2 * Math.PI;
-progress.style.strokeDasharray = circunferencia;
+progressCircle.style.strokeDasharray = circunferencia;
+progressCircle.style.strokeDashoffset = circunferencia;
 
 let isRunning = false;
 let interval;
@@ -36,6 +35,8 @@ let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
 let limiteTiempo = 1;
 cronometro.innerHTML = "00:00";
+let porcentajeProgreso = circunferencia;
+
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;
@@ -56,7 +57,7 @@ const runTimer = () =>{
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
-            //calcularPorcentaje(difTiempoTranscurrido);
+            calcularPorcentaje(difTiempoTranscurrido, circunferencia);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
         },100)
     }
@@ -81,16 +82,19 @@ const pauseTimer = () => {
 
 startBtn.addEventListener("click", () =>{runTimer()});
 
-function calcularPorcentaje(tiempo){
+function calcularPorcentaje(tiempo, perimetro){
 	let porcentaje = (tiempo * 100) / conversorMilisengudos(limiteTiempo);
 	if(porcentaje <= 100){
-		progressBar.style.width = porcentaje.toFixed(2) + "%";
+		
+        porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
+        
+		progressCircle.style.strokeDashoffset = porcentajeProgreso;
+
 	}
 }
 
 function conversorMilisengudos(minutosAms){
 	let limiteEnMs = minutosAms * 1000 * 60;
 	return limiteEnMs;
-
 }
 
