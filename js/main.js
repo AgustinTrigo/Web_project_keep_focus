@@ -33,7 +33,7 @@ let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-let limiteTiempo = .25;
+let limiteTiempo = 25;
 cronometro.innerHTML = "00:00";
 let porcentajeProgreso = parseInt(circunferencia);
 
