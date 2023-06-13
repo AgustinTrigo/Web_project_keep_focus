@@ -33,9 +33,9 @@ let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-let limiteTiempo = 1;
+let limiteTiempo = .25;
 cronometro.innerHTML = "00:00";
-let porcentajeProgreso = circunferencia;
+let porcentajeProgreso = parseInt(circunferencia);
 
 
 const agregarCero = (numero) =>{
@@ -63,7 +63,7 @@ const runTimer = () =>{
     }
 
     isRunning = true;
-    isRunning ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="lni lni-pause"></i></button>` : "";
+    isRunning ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-circle-pause"></i></button>` : "";
     let pauseBtn = document.getElementById("timerStopBtn");
     pauseBtn.addEventListener("click", () =>{pauseTimer()});
 }
@@ -75,7 +75,7 @@ const pauseTimer = () => {
     clearInterval(interval);
     
     isRunning = false;
-    !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="lni lni-play"></i></button>` : "";
+    !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
     let startBtn = document.getElementById("timerBtn");
     startBtn.addEventListener("click", () =>{runTimer()});
 }
@@ -84,11 +84,11 @@ startBtn.addEventListener("click", () =>{runTimer()});
 
 function calcularPorcentaje(tiempo, perimetro){
 	let porcentaje = (tiempo * 100) / conversorMilisengudos(limiteTiempo);
-	if(porcentaje <= 100){
+	if(porcentaje <= 100 || porcentajeProgreso >= 0){
 		
         porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
         
-		progressCircle.style.strokeDashoffset = porcentajeProgreso;
+		progressCircle.style.strokeDashoffset = parseInt(porcentajeProgreso);
 
 	}
 }
