@@ -10,11 +10,13 @@ body{
 
 .navbar{
     background-color: #212A3E;
-    position: relative;
+    position: fixed;
+    min-width: 100vw;
     top: 0px;
     height: 56px;
     transition-duration: 0.45s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    z-index: 100;
 }
 
 a{
@@ -84,6 +86,7 @@ a{
 /*--*/
 /* Navbar menu */
 .display-menu{
+    transition: .8s;
     height: 100vh;
 }
 
@@ -96,15 +99,50 @@ a{
 }
 
 .navbar-menu li{
+    opacity: 0;
     list-style: none;
     margin-bottom: 40px;
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 .navbar-menu a{
     color: white;
+}
+
+.display-menu .navbar-menu li:nth-child(1){
+    animation-name: showlist;
+    animation-delay: .1s;
+    animation-duration: 1.6s;
+    animation-fill-mode: forwards;
+    display: block;
+}
+
+.display-menu .navbar-menu li:nth-child(2){
+    animation-name: showlist;
+    animation-delay: .25s;
+    animation-duration: 1.6s;
+    animation-fill-mode: forwards;
+    display: block;
+}
+
+.display-menu .navbar-menu li:nth-child(3){
+    animation-name: showlist;
+    animation-delay: .35s;
+    animation-duration: 1.6s;
+    animation-fill-mode: forwards;
+    display: block;
+}
+
+
+@keyframes showlist {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 /*--*/
@@ -170,7 +208,7 @@ button{
 
 .progressCircle{
     fill:none;
-    stroke: #465881;
+    stroke: #9BA4B5;
     stroke-width: 10px;
     transform: rotate(-90deg);
     transform-origin: center;
@@ -178,8 +216,10 @@ button{
 
 button i{
     font-size: 4em;
-    color: #00909E;
+    color: #0199a7;
 }
 
-
+.contadorBtn, .contadorBtnStop :hover{
+    cursor: pointer;
+}
 
