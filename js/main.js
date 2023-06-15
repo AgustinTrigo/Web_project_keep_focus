@@ -23,8 +23,8 @@ let cronometro = document.getElementById("timer");
 let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
 //  Mostrar progreso usando forma de circulo
-let progressCircle = document.getElementById("progress")
-let radio = progressCircle.getAttribute("r")
+let progressCircle = document.getElementById("progress");
+let radio = progressCircle.getAttribute("r");
 let circunferencia = radio * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circunferencia;
 progressCircle.style.strokeDashoffset = circunferencia;
@@ -36,6 +36,43 @@ let tiempoTranscurrido  = 0;
 let limiteTiempo = 25;
 cronometro.innerHTML = "00:00";
 let porcentajeProgreso = parseInt(circunferencia);
+
+let modoSeleccionado = "extenso";
+
+let pomodoroTypes = [
+    {
+        opcion:"default",
+        tiempoPomodoro: 25,
+        tiempoDescanso: 5,
+        tiempoDescansoLargo: 15,
+
+    },
+    {
+        opcion:"extenso",
+        tiempoPomodoro: 50,
+        tiempoDescanso: 10,
+        tiempoDescansoLargo: 30,
+
+    },
+    {
+        opcion:"personalizar",
+        tiempoPomodoro: "",
+        tiempoDescanso: "",
+        tiempoDescansoLargo: "",
+
+    },
+]
+
+function seleccionarModo(types, typeSelected){
+    let limiteEnMs = 0;
+    types.find(element => {
+        if(element.opcion == typeSelected){
+            limiteEnMs = element.tiempoPomodoro * 1000 * 60;
+        }
+    });
+
+    return limiteEnMs;
+}
 
 
 const agregarCero = (numero) =>{
@@ -62,6 +99,7 @@ const runTimer = () =>{
         },100)
     }
 
+    
     isRunning = true;
     isRunning ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-circle-pause"></i></button>` : "";
     let pauseBtn = document.getElementById("timerStopBtn");
@@ -83,7 +121,7 @@ const pauseTimer = () => {
 startBtn.addEventListener("click", () =>{runTimer()});
 
 function calcularPorcentaje(tiempo, perimetro){
-	let porcentaje = (tiempo * 100) / conversorMilisengudos(limiteTiempo);
+	let porcentaje = (tiempo * 100) / seleccionarModo(pomodoroTypes, modoSeleccionado);
 	if(porcentaje <= 100 || porcentajeProgreso >= 0){
 		
         porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
@@ -93,8 +131,6 @@ function calcularPorcentaje(tiempo, perimetro){
 	}
 }
 
-function conversorMilisengudos(minutosAms){
-	let limiteEnMs = minutosAms * 1000 * 60;
-	return limiteEnMs;
-}
+
+
 
