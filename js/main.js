@@ -22,7 +22,6 @@ navbarBtn.addEventListener("click", ()=>{
 let cronometro = document.getElementById("timer");
 let btnsBox = document.getElementById("btnsBox");
 let startBtn = document.getElementById("timerBtn");
-//  Mostrar progreso usando forma de circulo
 let progressCircle = document.getElementById("progress");
 let radio = progressCircle.getAttribute("r");
 let circunferencia = radio * 2 * Math.PI;
@@ -43,7 +42,7 @@ let limiteEnMs = 0;
 let pomodoroTypes = [
     {
         opcion:"default",
-        tiempoPomodoro: .25,
+        tiempoPomodoro: 25,
         tiempoDescanso: 5,
         tiempoDescansoLargo: 15,
 
@@ -64,17 +63,8 @@ let pomodoroTypes = [
     },
 ]
 
-function seleccionarModo(types, typeSelected){
-    
-    types.find(element => {
-        if(element.opcion == typeSelected){
-            limiteEnMs = element.tiempoPomodoro * 1000 * 60;
-        }
-    });
 
-    return limiteEnMs;
-}
-
+// DECLARACION DE FUNCIONES
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;
@@ -87,9 +77,7 @@ const generarTiempo = (milisegundos) =>{
     return `${agregarCero(minutos)}:${agregarCero(parseInt(segundos))}`
 }
 
-
 const runTimer = () =>{
-    
     if(!isRunning){
         tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
         interval = setInterval(()=>{ 
@@ -99,22 +87,14 @@ const runTimer = () =>{
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             if(difTiempoTranscurrido >= limiteEnMs){
                 clearInterval(interval)
-                isRunning = false;
-                !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
                 difTiempoTranscurrido = 0;
                 diferenciaTiempo = 0;
                 tiempoTranscurrido  = 0;
-                let startBtn = document.getElementById("timerBtn");
-                startBtn.addEventListener("click", () =>{runTimer()});
+                cambiarBoton(!isRunning);
             }
         },100)
     }
-
-    
-    isRunning = true;
-    isRunning ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-circle-pause"></i></button>` : "";
-    let pauseBtn = document.getElementById("timerStopBtn");
-    pauseBtn.addEventListener("click", () =>{pauseTimer()});
+    cambiarBoton(isRunning);
 }
 
 const pauseTimer = () => {
@@ -123,13 +103,8 @@ const pauseTimer = () => {
     diferenciaTiempo = tiempoEnPausa - tiempoTranscurrido;
     clearInterval(interval);
     
-    isRunning = false;
-    !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
-    let startBtn = document.getElementById("timerBtn");
-    startBtn.addEventListener("click", () =>{runTimer()});
+    cambiarBoton(!isRunning);
 }
-
-startBtn.addEventListener("click", () =>{runTimer()});
 
 function calcularPorcentaje(tiempo, perimetro){
 	let porcentaje = (tiempo * 100) / seleccionarModo(pomodoroTypes, modoSeleccionado);
@@ -142,6 +117,38 @@ function calcularPorcentaje(tiempo, perimetro){
 	}
 }
 
+function cambiarBoton(flag){
+    if(!flag){
+        flag = true;
+        flag ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-circle-pause"></i></button>` : "";
+        let pauseBtn = document.getElementById("timerStopBtn");
+        pauseBtn.addEventListener("click", () =>{pauseTimer()});
+        return flag;
+    }
+    
+    if(flag){
+        flag = false;
+        !flag ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
+        let startBtn = document.getElementById("timerBtn");
+        startBtn.addEventListener("click", () =>{runTimer()});
+        return flag;
+    }
+}
+
+function seleccionarModo(types, typeSelected){
+    
+    types.find(element => {
+        if(element.opcion == typeSelected){
+            limiteEnMs = element.tiempoPomodoro * 1000 * 60;
+        }
+    });
+
+    return limiteEnMs;
+}
+
+// LLAMADAS
+
+cambiarBoton(!isRunning);
 
 
 
