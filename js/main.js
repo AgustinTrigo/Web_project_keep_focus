@@ -33,16 +33,17 @@ let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
 let tiempoTranscurrido  = 0;
-let limiteTiempo = 25;
+
 cronometro.innerHTML = "00:00";
 let porcentajeProgreso = parseInt(circunferencia);
 
-let modoSeleccionado = "extenso";
+let modoSeleccionado = "default";
+let limiteEnMs = 0;
 
 let pomodoroTypes = [
     {
         opcion:"default",
-        tiempoPomodoro: 25,
+        tiempoPomodoro: .25,
         tiempoDescanso: 5,
         tiempoDescansoLargo: 15,
 
@@ -64,7 +65,7 @@ let pomodoroTypes = [
 ]
 
 function seleccionarModo(types, typeSelected){
-    let limiteEnMs = 0;
+    
     types.find(element => {
         if(element.opcion == typeSelected){
             limiteEnMs = element.tiempoPomodoro * 1000 * 60;
@@ -96,6 +97,16 @@ const runTimer = () =>{
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             calcularPorcentaje(difTiempoTranscurrido, circunferencia);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
+            if(difTiempoTranscurrido >= limiteEnMs){
+                clearInterval(interval)
+                isRunning = false;
+                !isRunning ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
+                difTiempoTranscurrido = 0;
+                diferenciaTiempo = 0;
+                tiempoTranscurrido  = 0;
+                let startBtn = document.getElementById("timerBtn");
+                startBtn.addEventListener("click", () =>{runTimer()});
+            }
         },100)
     }
 
