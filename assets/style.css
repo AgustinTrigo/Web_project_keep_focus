@@ -6,6 +6,7 @@
 
 body{
     background-color: #ededed;
+    font-family: 'Outfit', sans-serif;
 }
 
 .navbar{
@@ -151,7 +152,7 @@ a{
 .container{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr 150px;
+    grid-template-rows: 235px 1fr 150px;
     grid-template-areas: 
     "top"
     "mid"
@@ -163,6 +164,14 @@ a{
 
 .top-container{
     grid-area: top;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr;
+    grid-template-areas: 
+    "tittle"
+    "progress";
+    gap: 10px;
+
 }
 
 .mid-container{
@@ -223,5 +232,22 @@ button i{
 
 .contadorBtn, .contadorBtnStop :hover{
     cursor: pointer;
+}
+
+.pomodoro-type{
+    grid-area: tittle;
+    position: relative;
+    top: 80%;
+    max-height: 150px;
+}
+
+.pomodoro-type h2{
+    font-weight: 500;
+    font-size: 1.4em;
+    color: #272f3f;
+}
+
+.pomodoro-progreso{
+    grid-area: progress;
 }
 
