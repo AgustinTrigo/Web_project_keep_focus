@@ -17,12 +17,14 @@ let porcentajeProgreso = parseInt(circunferencia);
 
 let modoSeleccionado = "default";
 let limiteEnMs = 0;
+let descansoEnMs = 0;
+let descansoLargoEnMs = 0;
 
 let pomodoroTypes = [
     {
         opcion:"default",
-        tiempoPomodoro: 1,
-        tiempoDescanso: .5,
+        tiempoPomodoro: .5,
+        tiempoDescanso: .25,
         tiempoDescansoLargo: 15,
 
     },
@@ -42,6 +44,8 @@ let pomodoroTypes = [
     },
 ]
 
+let objetoPomodoro = {};
+let progresoPomodoro = [];
 
 // DECLARACION DE FUNCIONES
 
@@ -62,15 +66,16 @@ const runTimer = () =>{
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
-            calcularPorcentaje(difTiempoTranscurrido, circunferencia);
+            progresoPomodoro.findLast(()=>{}) == "W" ? calcularPorcentaje(difTiempoTranscurrido, circunferencia, objetoPomodoro.tiempoDescanso) : calcularPorcentaje(difTiempoTranscurrido, circunferencia, objetoPomodoro.pomodoro);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
-            if(difTiempoTranscurrido >= limiteEnMs){3
-                restMode(pomodoroTypes, modoSeleccionado)
+            if(difTiempoTranscurrido >= objetoPomodoro.pomodoro){
+                progresoPomodoro.push("W")
                 clearInterval(interval)
                 difTiempoTranscurrido = 0;
                 diferenciaTiempo = 0;
                 tiempoTranscurrido  = 0;
                 cambiarBoton(!isRunning);
+                
             }
         },100)
     }
@@ -86,8 +91,8 @@ const pauseTimer = () => {
     cambiarBoton(!isRunning);
 }
 
-function calcularPorcentaje(tiempo, perimetro){
-	let porcentaje = (tiempo * 100) / seleccionarModo(pomodoroTypes, modoSeleccionado);
+function calcularPorcentaje(tiempo, perimetro, tiempoLimite){
+	let porcentaje = (tiempo * 100) / tiempoLimite;
 	if(porcentaje <= 100 || porcentajeProgreso >= 0){
 		
         porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
@@ -117,25 +122,20 @@ function cambiarBoton(flag){
 
 function seleccionarModo(types, typeSelected){
     
-    types.find(element => {
+    types.forEach(element => {
         if(element.opcion == typeSelected){
             limiteEnMs = element.tiempoPomodoro * 1000 * 60;
+            descansoEnMs = element.tiempoDescanso * 1000 * 6;
+            descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 6;
         }
     });
 
-    return limiteEnMs;
-}
-
-function restMode(types, typeSelected){
-    types.find(element => {
-        if(element.opcion == typeSelected){
-            limiteEnMs = element.tiempoDescanso * 1000 * 60;
-        }
-    });
-
-    return limiteEnMs;
+    objetoPomodoro = {pomodoro: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
+    return objetoPomodoro;
 }
 
 // LLAMADAS
 
 cambiarBoton(!isRunning);
+seleccionarModo(pomodoroTypes, modoSeleccionado);
+console.log(objetoPomodoro.descansoLargo)
