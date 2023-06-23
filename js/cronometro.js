@@ -44,8 +44,8 @@ let pomodoroTypes = [
     },
 ]
 
-let objetoPomodoro = {};
-let progresoPomodoro = [];
+let selectedPom = {};
+let progresoPom = [];
 
 // DECLARACION DE FUNCIONES
 
@@ -66,10 +66,12 @@ const runTimer = () =>{
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
-            progresoPomodoro.findLast(()=>{}) == "W" ? calcularPorcentaje(difTiempoTranscurrido, circunferencia, objetoPomodoro.tiempoDescanso) : calcularPorcentaje(difTiempoTranscurrido, circunferencia, objetoPomodoro.pomodoro);
+            let limite = "";
+            progresoPom.length % 2 == 0 ? limite = selectedPom.workingTime : limite = selectedPom.descansoCorto;
+            calcularPorcentaje(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
-            if(difTiempoTranscurrido >= objetoPomodoro.pomodoro){
-                progresoPomodoro.push("W")
+            if(difTiempoTranscurrido >= limite){
+                progresoPom.push("W")
                 clearInterval(interval)
                 difTiempoTranscurrido = 0;
                 diferenciaTiempo = 0;
@@ -125,17 +127,16 @@ function seleccionarModo(types, typeSelected){
     types.forEach(element => {
         if(element.opcion == typeSelected){
             limiteEnMs = element.tiempoPomodoro * 1000 * 60;
-            descansoEnMs = element.tiempoDescanso * 1000 * 6;
-            descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 6;
+            descansoEnMs = element.tiempoDescanso * 1000 * 60;
+            descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
         }
     });
 
-    objetoPomodoro = {pomodoro: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
-    return objetoPomodoro;
+    selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
+    
 }
 
 // LLAMADAS
 
 cambiarBoton(!isRunning);
 seleccionarModo(pomodoroTypes, modoSeleccionado);
-console.log(objetoPomodoro.descansoLargo)
