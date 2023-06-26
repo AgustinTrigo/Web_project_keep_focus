@@ -20,12 +20,21 @@ let limiteEnMs = 0;
 let descansoEnMs = 0;
 let descansoLargoEnMs = 0;
 
+let mostrarModo = document.querySelector(".pomodoro-type");
+mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
+
 let pomodoroTypes = [
     {
         opcion:"default",
-        tiempoPomodoro: .5,
-        tiempoDescanso: .25,
+        tiempoPomodoro: .25,
+        tiempoDescanso: .125,
         tiempoDescansoLargo: 15,
+        intervalos: 
+        {
+            work: 8,
+            rest: 6,
+            longRest: 1
+        }
 
     },
     {
@@ -33,15 +42,25 @@ let pomodoroTypes = [
         tiempoPomodoro: 50,
         tiempoDescanso: 10,
         tiempoDescansoLargo: 30,
-
+        intervalos: 
+        {
+            work: 8,
+            rest: 6,
+            longRest: 1
+        }
     },
     {
-        opcion:"personalizar",
+        opcion:"personalizado",
         tiempoPomodoro: "",
         tiempoDescanso: "",
         tiempoDescansoLargo: "",
-
-    },
+        intervalos: 
+        {
+            work: "",
+            rest: "",
+            longRest: ""
+        }
+    }
 ]
 
 let selectedPom = {};
@@ -62,16 +81,27 @@ const generarTiempo = (milisegundos) =>{
 
 const runTimer = () =>{
     if(!isRunning){
+        console.log(progresoPom.findLast((e)=>e))
         tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
+        let limite = "";
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
-            let limite = "";
+            
             progresoPom.length % 2 == 0 ? limite = selectedPom.workingTime : limite = selectedPom.descansoCorto;
+           
             calcularPorcentaje(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
+            
             if(difTiempoTranscurrido >= limite){
-                progresoPom.push("W")
+
+                let lastType = progresoPom.findLast((e)=>e)
+                if(lastType == "W"){
+                    progresoPom.push("R");
+                }else{
+                    progresoPom.push("W");
+                }
+                            
                 clearInterval(interval)
                 difTiempoTranscurrido = 0;
                 diferenciaTiempo = 0;
