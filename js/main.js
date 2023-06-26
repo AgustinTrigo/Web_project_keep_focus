@@ -19,5 +19,8 @@ navbarBtn.addEventListener("click", ()=>{
     }
 })
 
+let defaultMode = document.getElementById("modoPorDefecto");
+
+
 
 

@@ -251,3 +251,22 @@ button i{
     grid-area: progress;
 }
 
+/* Playlist Cards */
+
+.playlist-cards{
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.card{
+    width: clamp(300px, 300px, 320px);
+    height: 150px;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
