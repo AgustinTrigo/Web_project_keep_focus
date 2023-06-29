@@ -274,13 +274,17 @@ button i{
 
 .card:hover{
     border: 2px #212A3E solid;
-    box-shadow: 1px 1px 8px 1px #212a3e85;
+    box-shadow: 1px 1px 8px 1px #212e3e85;
     
 }
 
 .card-title{
     margin-left: 25px;
     margin-top: 20px;
+}
+
+.card-title h3{
+    color: #39496b;
 }
 
 .card-title div{
@@ -313,3 +317,18 @@ button i{
     text-align: end;
 }
 
+.newCard{
+    max-height: 50px;
+    background-color: #00909E;
+    color: white;
+}
+
+.newCard h3{
+    color: white;
+    font-weight: 400;
+    text-align: center;
+}
+
+.newCard .card-title{
+    margin-left: 0px;
+}
