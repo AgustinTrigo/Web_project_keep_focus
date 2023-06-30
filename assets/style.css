@@ -10,7 +10,8 @@ body{
 }
 
 .navbar{
-    background-color: #212A3E;
+    /*background-color: #212A3E;*/
+    background-color: #9681EB;
     position: fixed;
     min-width: 100vw;
     top: 0px;
@@ -281,17 +282,14 @@ button i{
 .card-title{
     margin-left: 25px;
     margin-top: 20px;
-}
-
-.card-title h3{
     color: #39496b;
 }
 
-.card-title div{
-    margin-top: 8px;
+.card-title::after{
+    content: "";
+    display: inline-block;
     width: 240px;
     border-bottom: 1px solid rgb(129, 129, 129);
-
 }
 
 .card-info{
@@ -318,17 +316,22 @@ button i{
 }
 
 .newCard{
-    max-height: 50px;
-    background-color: #00909E;
-    color: white;
+    width: 300px;
+    border-radius: 10px;
+    height: 40px;
+    background-color: #45CFDD;
+    border: 2px transparent solid;
+    box-shadow: 0px 0px 5px -1px rgba(36, 36, 36, 0.411);
 }
 
 .newCard h3{
-    color: white;
-    font-weight: 400;
+    color: #ffffff;
+    font-weight: 500;
     text-align: center;
+    font-family: 'Outfit', sans-serif;
 }
 
-.newCard .card-title{
-    margin-left: 0px;
+.newCard:active{
+    border: 2px #212A3E solid;
+    box-shadow: 1px 1px 8px 1px #212e3e85;
 }
