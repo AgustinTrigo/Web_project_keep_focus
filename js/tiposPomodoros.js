@@ -23,11 +23,15 @@ fetch('js/pomodoros.json')
                         </ul>
                     </div>
                 </div>
-                <button id="seleccionar" class="card-btn">Seleccionar</button>
+                <button id="seleccionar" class="card-btn" onClick="selectCard(${i})">Seleccionar</button>
             </div>
             `
         });
     });
 
+function selectCard(index){
+    let selected = document.getElementById(`opcion${index}`);
+    selected.classList.toggle("seleccionado")
+}
 
 
