@@ -1,0 +1,27 @@
+[
+    {
+        "opcion":"Regular",
+        "tiempoPomodoro": 25,
+        "tiempoDescanso": 5,
+        "tiempoDescansoLargo": 15,
+        "intervalos": 
+        {
+            "work": 8,
+            "rest": 6,
+            "longRest": 1
+        }
+
+    },
+    {
+        "opcion":"Extenso",
+        "tiempoPomodoro": 40,
+        "tiempoDescanso": 10,
+        "tiempoDescansoLargo": 60,
+        "intervalos": 
+        {
+            "work": 8,
+            "rest": 6,
+            "longRest": 1
+        }
+    }
+]

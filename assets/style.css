@@ -265,7 +265,7 @@ button i{
 }
 
 .card{
-    width: clamp(300px, 300px, 320px);
+    width: clamp(300px, 300px, 400px);
     height: 200px;
     border-radius: 15px;
     background-color: white;
@@ -273,11 +273,6 @@ button i{
     box-shadow: 0px 0px 5px -1px rgba(36, 36, 36, 0.411);
 }
 
-.card:hover{
-    border: 2px #212A3E solid;
-    box-shadow: 1px 1px 8px 1px #212e3e85;
-    
-}
 
 .card-title{
     margin-left: 25px;
@@ -332,6 +327,22 @@ button i{
 }
 
 .newCard:active{
+    border: 2px #ffffff solid;
+    box-shadow: 1px 1px 8px 1px #212e3e85;
+}
+
+.card-btn{
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #0199a7;
+    cursor: pointer;
+}
+
+
+.seleccionado{
     border: 2px #212A3E solid;
     box-shadow: 1px 1px 8px 1px #212e3e85;
+    
 }

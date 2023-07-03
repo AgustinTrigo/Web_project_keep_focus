@@ -15,53 +15,13 @@ let tiempoTranscurrido  = 0;
 cronometro.innerHTML = "00:00";
 let porcentajeProgreso = parseInt(circunferencia);
 
-let modoSeleccionado = "default";
+let modoSeleccionado = "Regular";
 let limiteEnMs = 0;
 let descansoEnMs = 0;
 let descansoLargoEnMs = 0;
 
 let mostrarModo = document.querySelector(".pomodoro-type");
 mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
-
-let pomodoroTypes = [
-    {
-        opcion:"default",
-        tiempoPomodoro: .25,
-        tiempoDescanso: .125,
-        tiempoDescansoLargo: 15,
-        intervalos: 
-        {
-            work: 8,
-            rest: 6,
-            longRest: 1
-        }
-
-    },
-    {
-        opcion:"extenso",
-        tiempoPomodoro: 50,
-        tiempoDescanso: 10,
-        tiempoDescansoLargo: 30,
-        intervalos: 
-        {
-            work: 8,
-            rest: 6,
-            longRest: 1
-        }
-    },
-    {
-        opcion:"personalizado",
-        tiempoPomodoro: "",
-        tiempoDescanso: "",
-        tiempoDescansoLargo: "",
-        intervalos: 
-        {
-            work: "",
-            rest: "",
-            longRest: ""
-        }
-    }
-]
 
 let selectedPom = {};
 let progresoPom = [];
@@ -152,21 +112,23 @@ function cambiarBoton(flag){
     }
 }
 
-function seleccionarModo(types, typeSelected){
-    
-    types.forEach(element => {
-        if(element.opcion == typeSelected){
-            limiteEnMs = element.tiempoPomodoro * 1000 * 60;
-            descansoEnMs = element.tiempoDescanso * 1000 * 60;
-            descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
-        }
-    });
+function seleccionarModo(typeSelected){
+    fetch('js/pomodoros.json')
+    .then((resultado) => resultado.json())
+    .then((data) => {
+        data.forEach(element => {
+            if(element.opcion == typeSelected){
+                limiteEnMs = element.tiempoPomodoro * 1000 * 60;
+                descansoEnMs = element.tiempoDescanso * 1000 * 60;
+                descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
+            }
+        });
 
-    selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
-    
+        selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
+    })
+        
 }
 
 // LLAMADAS
-
 cambiarBoton(!isRunning);
-seleccionarModo(pomodoroTypes, modoSeleccionado);
+seleccionarModo(modoSeleccionado);
