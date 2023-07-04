@@ -15,16 +15,25 @@ let tiempoTranscurrido  = 0;
 cronometro.innerHTML = "00:00";
 let porcentajeProgreso = parseInt(circunferencia);
 
-let modoSeleccionado = "Regular";
+let modoSeleccionado;
 let limiteEnMs = 0;
 let descansoEnMs = 0;
 let descansoLargoEnMs = 0;
 
 let mostrarModo = document.querySelector(".pomodoro-type");
+modoSeleccionado = JSON.parse(localStorage.getItem("modo"));
 mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
 
 let selectedPom = {};
 let progresoPom = [];
+/*
+fetch('.js/pomodoros.json')
+    .then((resultado) => resultado.json())
+    .then((data) => {
+        
+    })
+*/
+
 
 // DECLARACION DE FUNCIONES
 

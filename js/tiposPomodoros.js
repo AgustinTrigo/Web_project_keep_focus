@@ -30,8 +30,24 @@ fetch('js/pomodoros.json')
     });
 
 function selectCard(index){
+    let notSelected = document.querySelectorAll(".card");
+    notSelected.forEach((e)=>{
+        e.className = "card";
+    })
     let selected = document.getElementById(`opcion${index}`);
     selected.classList.toggle("seleccionado")
+    let encontrarId = selected.getAttribute("id")
+    let id = encontrarId[encontrarId.length-1];
+    fetch('js/pomodoros.json')
+    .then((resultado) => resultado.json())
+    .then((data) => {
+        console.log(data);
+        data.forEach((e, i)=>{
+            if(i === parseInt(id)){
+                localStorage.setItem(`modo`, JSON.stringify(e.opcion))
+            };
+        })
+    })
 }
 
 
