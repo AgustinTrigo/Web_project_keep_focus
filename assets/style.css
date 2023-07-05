@@ -4,14 +4,22 @@
     box-sizing: border-box;
 }
 
+:root{
+    --bg-color: #e7e4e4;
+    --navbar-color: #153243;
+    --btns-color: #03CEA4;
+    --progressBar-color: #FF3C38;
+    --title-color: #153243;
+}
+
 body{
-    background-color: #ededed;
+    background-color: var(--bg-color);
+    /* background-image: linear-gradient(to bottom, #c9c5c7, var(--bg-color)); */
     font-family: 'Outfit', sans-serif;
 }
 
 .navbar{
-    /*background-color: #212A3E;*/
-    background-color: #9681EB;
+    background-color: var(--navbar-color);
     position: fixed;
     min-width: 100vw;
     top: 0px;
@@ -90,6 +98,7 @@ a{
 .display-menu{
     transition: .8s;
     height: 100vh;
+    background-color: #38838d;
 }
 
 .navbar-menu{
@@ -190,8 +199,7 @@ a{
 
 .btnsContainer{
     position: absolute;
-    top: 34.5%;
-    left: 124px;
+    top: 34.8%;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -205,13 +213,15 @@ a{
     color: #272f3f; 
 }
 
-
-
 button{
     border: none;
     background-color: transparent;
 }
 
+.fa-play{
+    position: relative;
+    left: 4px;
+}
 .outsideCircle{
     stroke: white;
     fill: none;
@@ -220,7 +230,7 @@ button{
 
 .progressCircle{
     fill:none;
-    stroke: #9BA4B5;
+    stroke: var(--progressBar-color);
     stroke-width: 10px;
     transform: rotate(-90deg);
     transform-origin: center;
@@ -228,7 +238,7 @@ button{
 
 button i{
     font-size: 4em;
-    color: #0199a7;
+    color: var(--btns-color);
 }
 
 .contadorBtn, .contadorBtnStop :hover{
@@ -244,9 +254,10 @@ button i{
 
 .pomodoro-type h2{
     font-weight: 500;
-    font-size: 1.4em;
-    color: #272f3f;
+    font-size: 1.6em;
+    color: var(--title-color);
 }
+
 
 .pomodoro-progreso{
     grid-area: progress;
@@ -339,14 +350,14 @@ button i{
     height: 35px;
     padding: 5px 0px 6px 0px;
     border-radius: 10px;
-    background-color: #00adbd;
+    background-color: var(--btns-color);
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     color: white;
 }
 
 .seleccionado{
-    border: 2px #212A3E solid;
+    border: 2px var(--progressBar-color) solid;
     box-shadow: 1px 1px 8px 1px #212e3e85;
     
 }

@@ -7,6 +7,9 @@ let circunferencia = radio * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circunferencia;
 progressCircle.style.strokeDashoffset = circunferencia;
 
+let playIcon = `<i class="fa-solid fa-play"></i>`;
+let pauseIcon = `<i class="fa-solid fa-pause"></i>`;
+
 let isRunning = false;
 let interval;
 let diferenciaTiempo = 0;
@@ -26,13 +29,6 @@ mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
 
 let selectedPom = {};
 let progresoPom = [];
-/*
-fetch('.js/pomodoros.json')
-    .then((resultado) => resultado.json())
-    .then((data) => {
-        
-    })
-*/
 
 
 // DECLARACION DE FUNCIONES
@@ -106,7 +102,7 @@ function calcularPorcentaje(tiempo, perimetro, tiempoLimite){
 function cambiarBoton(flag){
     if(!flag){
         flag = true;
-        flag ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-circle-pause"></i></button>` : "";
+        flag ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop">${pauseIcon}</button>` : "";
         let pauseBtn = document.getElementById("timerStopBtn");
         pauseBtn.addEventListener("click", () =>{pauseTimer()});
         return flag;
@@ -114,7 +110,7 @@ function cambiarBoton(flag){
     
     if(flag){
         flag = false;
-        !flag ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>` : "";
+        !flag ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn">${playIcon}</button>` : "";
         let startBtn = document.getElementById("timerBtn");
         startBtn.addEventListener("click", () =>{runTimer()});
         return flag;
