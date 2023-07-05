@@ -1,4 +1,5 @@
 let cardSection = document.getElementById("cardSection");
+let modoSeleccionado = JSON.parse(localStorage.getItem("modo"));
 
 fetch('js/pomodoros.json')
     .then((resultado) => resultado.json())
@@ -50,4 +51,17 @@ function selectCard(index){
     })
 }
 
+// Condicinal para conservar el indicador del modo seleccionado.
+if(modoSeleccionado != null){
+    fetch('js/pomodoros.json')
+    .then((resultado) => resultado.json())
+    .then((data) => {
+        data.forEach((e, i)=>{
+            if(e.opcion == modoSeleccionado){
+                let isSelected = document.getElementById(`opcion${i}`);
+                isSelected.className += " seleccionado";
+            }
+        })
+    })
+}
 

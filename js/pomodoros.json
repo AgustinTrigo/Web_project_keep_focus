@@ -1,6 +1,6 @@
 [
     {
-        "opcion":"Regular",
+        "opcion":"Normal",
         "tiempoPomodoro": 25,
         "tiempoDescanso": 5,
         "tiempoDescansoLargo": 15,

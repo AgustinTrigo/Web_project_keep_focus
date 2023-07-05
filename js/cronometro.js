@@ -22,10 +22,17 @@ let modoSeleccionado;
 let limiteEnMs = 0;
 let descansoEnMs = 0;
 let descansoLargoEnMs = 0;
-
 let mostrarModo = document.querySelector(".pomodoro-type");
 modoSeleccionado = JSON.parse(localStorage.getItem("modo"));
-mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
+
+if(modoSeleccionado === null){
+    modoSeleccionado = "Normal";
+    mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
+}else{
+    modoSeleccionado = JSON.parse(localStorage.getItem("modo"));
+    mostrarModo.innerHTML = `<h2>${modoSeleccionado}</h2>`
+}
+
 
 let selectedPom = {};
 let progresoPom = [];
@@ -46,7 +53,6 @@ const generarTiempo = (milisegundos) =>{
 
 const runTimer = () =>{
     if(!isRunning){
-        console.log(progresoPom.findLast((e)=>e))
         tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
         let limite = "";
         interval = setInterval(()=>{ 
