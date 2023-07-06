@@ -340,6 +340,8 @@ button i{
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     color: white;
+    transition-duration: .5s;
+    transition-timing-function: ease;
 }
 
 .customBtn{
@@ -367,13 +369,23 @@ button i{
     border: 1px solid #243945e7;
 }
 
+.fa-check{
+    position: relative;
+    top: 1px;
+    left: 1px;
+    font-size: 1.3em;
+    color: white;
+}
+
 .seleccionado{
     border: 2px var(--progressBar-color) solid;
     box-shadow: 1px 1px 8px 1px #212e3e85;
-    
 }
 
 .seleccionado button{
-    background-color: #4b6163;;
+    background-color: var(--progressBar-color);
+    width: 35px;
+    left: 132.5px;
+    border-radius: 20px;
 }
 
