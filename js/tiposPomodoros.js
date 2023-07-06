@@ -42,7 +42,6 @@ function selectCard(index){
     fetch('js/pomodoros.json')
     .then((resultado) => resultado.json())
     .then((data) => {
-        console.log(data);
         data.forEach((e, i)=>{
             if(i === parseInt(id)){
                 localStorage.setItem(`modo`, JSON.stringify(e.opcion))
