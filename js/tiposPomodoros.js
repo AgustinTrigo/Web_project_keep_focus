@@ -1,5 +1,6 @@
 let cardSection = document.getElementById("cardSection");
 let modoSeleccionado = JSON.parse(localStorage.getItem("modo"));
+let checkIcon = `<i class="fa-solid fa-check"></i>`;
 
 fetch('js/pomodoros.json')
     .then((resultado) => resultado.json())
@@ -37,6 +38,7 @@ function selectCard(index){
     })
     let selected = document.getElementById(`opcion${index}`);
     selected.classList.toggle("seleccionado")
+    document.getElementById("seleccionar").innerHTML = checkIcon;
     let encontrarId = selected.getAttribute("id")
     let id = encontrarId[encontrarId.length-1];
     fetch('js/pomodoros.json')
