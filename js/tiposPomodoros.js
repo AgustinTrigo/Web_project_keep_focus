@@ -54,8 +54,11 @@ function selectCard(index){
     .then((data) => {
         data.forEach((e, i)=>{
             if(i === parseInt(id)){
-                localStorage.setItem(`modo`, JSON.stringify(e.opcion))
+                localStorage.setItem(`modo`, JSON.stringify(e.opcion));
+            }else if(i !== parseInt(id)){
+                localStorage.setItem(`modo`, JSON.stringify(data[id].opcion));
             };
+            
             if(e.opcion == buscarModo() && i === parseInt(id)){
                 let isSelected = document.getElementById(`opcion${i}`);
                 isSelected.children[2].innerHTML = `<i class="fa-solid fa-check"></i>`;
