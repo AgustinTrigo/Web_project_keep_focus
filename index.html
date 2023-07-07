@@ -29,13 +29,16 @@
                 <div class="pomodoro-progreso"></div>
             </div>
             <div class="mid-container">
-                <div id="btnsBox" class="btnsContainer">
-                    <button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>
+                <div class="svg-container">
+                    <svg width="300" height="300">
+                        <circle r="125" cx="150" cy="150" class="outsideCircle"></circle>
+                        <circle id="progress" r="125" cx="150" cy="150" class="progressCircle"></circle>
+                    </svg>
+                    <div id="btnsBox" class="mainBtn">
+                        <button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-circle-play"></i></button>
+                    </div>
                 </div>
-                <svg width="300" height="300">
-                    <circle r="125" cx="150" cy="150" class="outsideCircle"></circle>
-                    <circle id="progress" r="125" cx="150" cy="150" class="progressCircle"></circle>
-                </svg>
+                
                 <div id="timer" class="contador"></div>
             </div>
             <div class="bottom-container"></div>

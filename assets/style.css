@@ -10,6 +10,7 @@
     --btns-color: #03CEA4;
     --progressBar-color: #FF3C38;
     --title-color: #153243;
+    --test-color: #388eff;
 }
 
 body{
@@ -98,7 +99,7 @@ a{
 .display-menu{
     transition: .8s;
     height: 100vh;
-    background-color: #38838d;
+    background-color: #204b64;
 }
 
 .navbar-menu{
@@ -195,7 +196,6 @@ a{
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -203,9 +203,17 @@ a{
     grid-area: bottom;
 }
 
-.btnsContainer{
-    position: absolute;
-    top: 34.8%;
+
+.svg-container{
+    position: relative;
+    max-height: 300px;
+}
+
+
+.mainBtn{
+    position:absolute;
+    top: 125px;
+    left: 125px;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -214,8 +222,10 @@ a{
 .contador{
     width: 179px;
     height: 50px;
+    margin-top: 40px;
     text-align: center;
     font-family: 'Outfit', sans-serif;
+    font-size: 1.2em;
     color: #272f3f; 
 }
 
@@ -226,8 +236,14 @@ button{
 
 .fa-play{
     position: relative;
-    left: 4px;
+    left: 5px;
 }
+
+.fa-pause{
+    position: relative;
+    left: 1px;
+}
+
 .outsideCircle{
     stroke: white;
     fill: none;
@@ -244,7 +260,7 @@ button{
 
 button i{
     font-size: 4em;
-    color: var(--btns-color);
+    color: var(--test-color);
 }
 
 .contadorBtn, .contadorBtnStop :hover{
@@ -260,7 +276,7 @@ button i{
 
 .pomodoro-type h2{
     font-weight: 500;
-    font-size: 1.6em;
+    font-size: 1.5em;
     color: var(--title-color);
 }
 
@@ -282,6 +298,9 @@ button i{
 }
 
 .card{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
     width: clamp(300px, 300px, 400px);
     height: 250px;
     border-radius: 15px;
@@ -330,13 +349,12 @@ button i{
 
 .card-btn{
     position: relative;
-    top: 35px;
-    left: 100px;
-    width: 100px;
+    width: 150px;
     height: 35px;
     padding: 5px 0px 6px 0px;
+    margin-top: 35px;
     border-radius: 10px;
-    background-color: var(--btns-color);
+    background-color: var(--test-color);
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     color: white;
@@ -348,7 +366,7 @@ button i{
     position: relative;
     top: 50px;
     width: 300px;
-    border-radius: 15px;
+    border-radius: 10px;
     height: 40px;
     margin-top: 100px;
     background-color: white;
@@ -372,7 +390,7 @@ button i{
 .fa-check{
     position: relative;
     top: 1px;
-    left: 1px;
+    left: .6px;
     font-size: 1.3em;
     color: white;
 }
@@ -385,7 +403,6 @@ button i{
 .seleccionado button{
     background-color: var(--progressBar-color);
     width: 35px;
-    left: 132.5px;
     border-radius: 20px;
 }
 

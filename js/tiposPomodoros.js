@@ -62,11 +62,11 @@ function selectCard(index){
             if(e.opcion == buscarModo() && i === parseInt(id)){
                 let isSelected = document.getElementById(`opcion${i}`);
                 isSelected.children[2].innerHTML = `<i class="fa-solid fa-check"></i>`;
-                console.log("log 3");
+                
             } else if(e.opcion !== buscarModo() && i !== parseInt(id)){
                 let isSelected = document.getElementById(`opcion${i}`);
-                isSelected.children[2].innerHTML = `seleccionar`;
-                console.log("log 4");
+                isSelected.children[2].innerHTML = `Seleccionar`;
+                
             } 
         })
     })
@@ -79,7 +79,6 @@ if(buscarModo() != null){
     .then((data) => {
         data.forEach((e, i)=>{
             if(e.opcion == buscarModo()){
-                console.log("log 1");
                 let isSelected = document.getElementById(`opcion${i}`);
                 isSelected.className += " seleccionado";
                 isSelected.children[2].innerHTML = `<i class="fa-solid fa-check"></i>`;
@@ -88,6 +87,5 @@ if(buscarModo() != null){
     })
 }else{
     mostrarIcono = "Seleccionar";
-    console.log("log 2");
 }
 

@@ -97,11 +97,8 @@ const pauseTimer = () => {
 function calcularPorcentaje(tiempo, perimetro, tiempoLimite){
 	let porcentaje = (tiempo * 100) / tiempoLimite;
 	if(porcentaje <= 100 || porcentajeProgreso >= 0){
-		
         porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
-        
 		progressCircle.style.strokeDashoffset = parseInt(porcentajeProgreso);
-
 	}
 }
 
