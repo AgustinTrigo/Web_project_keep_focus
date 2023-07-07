@@ -305,7 +305,8 @@ button i{
     border-radius: 15px;
     background-color: white;
     border: 2px transparent solid;
-    box-shadow: 0px 0px 5px -1px rgba(36, 36, 36, 0.411);
+    /* box-shadow: 0px 0px 5px -1px rgba(36, 36, 36, 0.411); */
+    
 }
 
 
@@ -367,7 +368,8 @@ button i{
     border-radius: 10px;
     height: 40px;
     background-color: white;
-    box-shadow: 0px 0px 7px -1px rgba(36, 36, 36, 0.411);
+    border: 1px solid #243945e7;
+    /* box-shadow: 0px 0px 7px -1px rgba(36, 36, 36, 0.411); */
     
 }
 
@@ -378,11 +380,6 @@ button i{
     font-family: 'Outfit', sans-serif;
     
 }
-
-/* .fa-square-plus{
-    font-size: 1.5em;
-    color: #243945e7;
-} */
 
 .custom-card-btn:active{
     box-shadow: none;
@@ -398,8 +395,11 @@ button i{
 }
 
 .seleccionado{
-    border: 2px var(--progressBar-color) solid;
     box-shadow: 1px 1px 8px 1px #212e3e85;
+    animation-name: showBorder;
+    animation-duration: .7s;
+    /* animation-direction:reverse; */
+    animation-fill-mode:forwards;
 }
 
 .seleccionado button{
@@ -408,3 +408,22 @@ button i{
     border-radius: 20px;
 }
 
+
+@keyframes showBorder{
+    0%{
+        border: 2px transparent solid;
+    }
+    25%{
+        border-top: 2px var(--progressBar-color) solid;
+    }
+    50%{
+        border-right: 2px var(--progressBar-color) solid;
+        border-left: 2px var(--progressBar-color) solid;
+    }
+    75%{
+        border: 2px var(--progressBar-color) solid;
+    }
+    100%{
+        border: 2px transparent solid;
+    }
+}
