@@ -364,6 +364,9 @@ button i{
 
 
 .custom-card-btn{
+    position: relative;
+    top: 80px;
+    left: 30px;
     width: 300px;
     border-radius: 10px;
     height: 40px;
@@ -384,6 +387,12 @@ button i{
 .custom-card-btn:active{
     box-shadow: none;
     border: 1px solid #243945e7;
+    background-color: #243945e7;
+    
+}
+
+.custom-card-btn h3:active{
+    color: white;
 }
 
 .fa-check{

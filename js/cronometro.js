@@ -140,3 +140,9 @@ function seleccionarModo(typeSelected){
 // LLAMADAS
 cambiarBoton(!isRunning);
 seleccionarModo(modoSeleccionado);
+
+fetch('js/pomodoros.json')
+    .then((resultado)=> resultado.json())
+    .then((data) =>{
+        console.log(data);
+    })
