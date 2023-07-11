@@ -112,9 +112,9 @@ function crearNuevo(){
     const nuevoObjt = 
     {
         "opcion":"Personalizado",
-        "tiempoPomodoro": 40,
-        "tiempoDescanso": 10,
-        "tiempoDescansoLargo": 60,
+        "tiempoPomodoro": 0.25,
+        "tiempoDescanso": 0.10,
+        "tiempoDescansoLargo": 1,
         "intervalos": 
         {
             "work": 8,

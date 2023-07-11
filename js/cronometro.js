@@ -121,28 +121,40 @@ function cambiarBoton(flag){
 }
 
 function seleccionarModo(typeSelected){
-    fetch('js/pomodoros.json')
-    .then((resultado) => resultado.json())
-    .then((data) => {
-        data.forEach(element => {
+    let getList = JSON.parse(localStorage.getItem("listado"));
+    mostrarLista(getList,typeSelected);
+    
+}
+
+function mostrarLista(list,typeSelected){
+
+    if(list == null){
+        fetch('js/pomodoros.json')
+        .then((resultado)=> resultado.json())
+        .then((data) =>{
+            data.forEach(element => {
+                if(element.opcion == typeSelected){
+                    limiteEnMs = element.tiempoPomodoro * 1000 * 60;
+                    descansoEnMs = element.tiempoDescanso * 1000 * 60;
+                    descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
+                }
+            });
+            selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs}; 
+        })
+    }else{
+        list.forEach(element => {
             if(element.opcion == typeSelected){
                 limiteEnMs = element.tiempoPomodoro * 1000 * 60;
                 descansoEnMs = element.tiempoDescanso * 1000 * 60;
                 descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
             }
         });
-
-        selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs};
-    })
-        
+        selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs}; 
+    }
+    
 }
 
 // LLAMADAS
 cambiarBoton(!isRunning);
 seleccionarModo(modoSeleccionado);
 
-fetch('js/pomodoros.json')
-    .then((resultado)=> resultado.json())
-    .then((data) =>{
-        console.log(data);
-    })
