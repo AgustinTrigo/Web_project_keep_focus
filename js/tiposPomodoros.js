@@ -24,7 +24,8 @@ fetch('js/pomodoros.json')
 function renderList(listado){
     cardSection.innerHTML = "";
     listado.forEach((e, i)=>{
-    cardSection.innerHTML += `
+    cardSection.innerHTML += 
+    `
     <div id="opcion${i}" class="card">
         <h3 class="card-title">${e.opcion}</h3>
         <div class="card-info">
@@ -37,9 +38,9 @@ function renderList(listado){
             </div>
             <div class="card-info-values">
                 <ul>
-                     <li>${e.tiempoPomodoro} min</li>
+                    <li>${e.tiempoPomodoro} min</li>
                     <li>${e.tiempoDescanso} min</li>
-                       <li>${e.tiempoDescansoLargo} min</li>
+                    <li>${e.tiempoDescansoLargo} min</li>
                 </ul>
             </div>
         </div>
@@ -97,19 +98,16 @@ function selectCard(index){
     
 }
 
-// Condicinal para conservar el indicador del modo seleccionado.
-
-
 // Funcion para crear un nuevo objeto
 
 let createBtn = document.querySelector(".custom-card-btn");
 createBtn.addEventListener("click", crearNuevo)
 
 function crearNuevo(){
-    /* let newCard = document.createElement("div").className = "card";
-    cardSection.appendChild(newCard); */
+    
+    customCard()
 
-    const nuevoObjt = 
+    /* const nuevoObjt = 
     {
         "opcion":"Personalizado",
         "tiempoPomodoro": 0.25,
@@ -123,11 +121,76 @@ function crearNuevo(){
         }
     }
 
-    let getList = JSON.parse(localStorage.getItem("listado"));
+    let getList = JSON.parse(localStorage.getItem("listado"))
     getList.push(nuevoObjt);
     localStorage.removeItem('listado');
     setList(getList);
-    renderList(getList);
+    renderList(getList); */
 
 }
 
+
+function customCard(){
+    
+    let getList = JSON.parse(localStorage.getItem("listado"))
+    let idNbr = getList.length;
+    let cardsContainer = document.getElementById("cardSection")
+    console.log(cardsContainer)
+    let newCard = document.createElement("div")
+    newCard.setAttribute("id",`opcion${idNbr}`)
+    newCard.className = "card";
+    cardsContainer.appendChild(newCard)
+    insertContent();
+    
+    
+    /* let newCustomCard = 
+    `
+    <div id="opcion${getList.length-1}" class="card">
+        <input type="text" class="card-title">
+        <div class="card-info">
+            <div class="card-info-rows">
+                <ul>
+                    <li>Pomodoro</li>
+                    <li>Descanso</li>
+                    <li>Descanso largo</li>
+                </ul>
+            </div>
+            <div class="card-info-values">
+                <ul>
+                    <li><input type="text"> min</li>
+                    <li><input type="text"> min</li>
+                    <li><input type="text"> min</li>
+                </ul>
+            </div>
+        </div>
+        <button id="seleccionar" class="card-btn" onClick="selectCard(${i})">${mostrarIcono}</button>
+    </div>
+    ` */
+
+
+
+}
+
+function insertContent(){
+    let newCustomCard = document.getElementById(`opcion${getList().length}`);
+    newCustomCard.innerHTML =
+    `
+    <input type="text" class="" name="titulo" minlengmth="4" maxlength="20" size="20" required autofocus/>
+    <div class="card-info">
+        <div class="card-info-rows">
+        <ul>
+            <li>Pomodoro</li>
+            <li>Descanso</li>
+            <li>Descanso largo</li>
+        </ul>
+    </div>
+    <div class="card-info-values">
+        <ul>
+            <li><input type="number" min="1" max="120" required> min</li>
+            <li><input type="number" min="1" max="120" required> min</li>
+            <li><input type="number" min="1" max="120" required> min</li>
+        </ul>
+    </div>
+    <button id="seleccionar" class="card-btn"> Guardar</button>
+    `
+}
