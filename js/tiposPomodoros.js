@@ -107,26 +107,6 @@ function crearNuevo(){
     
     customCard()
 
-    /* const nuevoObjt = 
-    {
-        "opcion":"Personalizado",
-        "tiempoPomodoro": 0.25,
-        "tiempoDescanso": 0.10,
-        "tiempoDescansoLargo": 1,
-        "intervalos": 
-        {
-            "work": 8,
-            "rest": 6,
-            "longRest": 1
-        }
-    }
-
-    let getList = JSON.parse(localStorage.getItem("listado"))
-    getList.push(nuevoObjt);
-    localStorage.removeItem('listado');
-    setList(getList);
-    renderList(getList); */
-
 }
 
 
@@ -142,40 +122,13 @@ function customCard(){
     cardsContainer.appendChild(newCard)
     insertContent();
     
-    
-    /* let newCustomCard = 
-    `
-    <div id="opcion${getList.length-1}" class="card">
-        <input type="text" class="card-title">
-        <div class="card-info">
-            <div class="card-info-rows">
-                <ul>
-                    <li>Pomodoro</li>
-                    <li>Descanso</li>
-                    <li>Descanso largo</li>
-                </ul>
-            </div>
-            <div class="card-info-values">
-                <ul>
-                    <li><input type="text"> min</li>
-                    <li><input type="text"> min</li>
-                    <li><input type="text"> min</li>
-                </ul>
-            </div>
-        </div>
-        <button id="seleccionar" class="card-btn" onClick="selectCard(${i})">${mostrarIcono}</button>
-    </div>
-    ` */
-
-
-
 }
 
 function insertContent(){
     let newCustomCard = document.getElementById(`opcion${getList().length}`);
     newCustomCard.innerHTML =
     `
-    <input type="text" class="" name="titulo" minlengmth="4" maxlength="20" size="20" required autofocus/>
+    <input id="valorTitulo" type="text" class="" name="titulo"  minlengmth="4" maxlength="20" size="20"  required autofocus/>
     <div class="card-info">
         <div class="card-info-rows">
         <ul>
@@ -186,11 +139,38 @@ function insertContent(){
     </div>
     <div class="card-info-values">
         <ul>
-            <li><input type="number" min="1" max="120" required> min</li>
-            <li><input type="number" min="1" max="120" required> min</li>
-            <li><input type="number" min="1" max="120" required> min</li>
+            <li><input id="valorPom" type="number" min="1" max="120" required> min</li>
+            <li><input id="valorDes" type="number" min="1" max="120" required> min</li>
+            <li><input id="valorLargo" type="number" min="1" max="120" required> min</li>
         </ul>
     </div>
-    <button id="seleccionar" class="card-btn"> Guardar</button>
+    <button id="seleccionar" class="card-btn" onClick="encontrarValor()"> Guardar</button>
     `
+}
+
+function encontrarValor(){
+    let titleValue = document.getElementById("valorTitulo");
+    let pomValue = document.getElementById("valorPom");    
+    let desValue = document.getElementById("valorDes");
+    let largoValue = document.getElementById("valorLargo");
+
+    const nuevoObjt = 
+    {
+        "opcion":`${titleValue.value}`,
+        "tiempoPomodoro": `${parseInt(pomValue.value)}`,
+        "tiempoDescanso": `${parseInt(desValue.value)}`,
+        "tiempoDescansoLargo": `${parseInt(largoValue.value)}`,
+        "intervalos": 
+        {
+            "work": 8,
+            "rest": 6,
+            "longRest": 1
+        }
+    }
+
+    let getList = JSON.parse(localStorage.getItem("listado"))
+    getList.push(nuevoObjt);
+    localStorage.removeItem('listado');
+    setList(getList);
+    renderList(getList); 
 }
