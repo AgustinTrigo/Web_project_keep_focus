@@ -9,6 +9,11 @@ const buscarModo = () => {
 const setList = (list) => {localStorage.setItem("listado", JSON.stringify(list))};
 const getList = () => {return mostrarListado = JSON.parse(localStorage.getItem("listado"));}
 
+/*
+
+let deleteBtn = `<button class="card-delete-btn" onClick="deleteCard(${i})"><i class="fa-regular fa-trash-can"></i></button>`
+${}
+*/
 fetch('js/pomodoros.json')
     .then((resultado) => resultado.json())
     .then((data) => {
@@ -24,29 +29,32 @@ fetch('js/pomodoros.json')
 function renderList(listado){
     cardSection.innerHTML = "";
     listado.forEach((e, i)=>{
-    cardSection.innerHTML += 
-    `
-    <div id="opcion${i}" class="card">
-        <h3 class="card-title">${e.opcion}</h3>
-        <div class="card-info">
-            <div class="card-info-rows">
-                <ul>
-                    <li>Pomodoro</li>
-                    <li>Descanso</li>
-                    <li>Descanso largo</li>
-                </ul>
+        let deleteBtn = `<button class="card-delete-btn" onClick="deleteCard(${i})"><i class="fa-regular fa-trash-can"></i></button>` 
+        cardSection.innerHTML += 
+        `
+        <div id="opcion${i}" class="card">
+            <h3 class="card-title">${e.opcion}</h3>
+            
+            <div class="card-info">
+                <div class="card-info-rows">
+                    <ul>
+                        <li>Pomodoro</li>
+                        <li>Descanso</li>
+                        <li>Descanso largo</li>
+                    </ul>
+                </div>
+                <div class="card-info-values">
+                    <ul>
+                        <li>${e.tiempoPomodoro} min</li>
+                        <li>${e.tiempoDescanso} min</li>
+                        <li>${e.tiempoDescansoLargo} min</li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-info-values">
-                <ul>
-                    <li>${e.tiempoPomodoro} min</li>
-                    <li>${e.tiempoDescanso} min</li>
-                    <li>${e.tiempoDescansoLargo} min</li>
-                </ul>
-            </div>
+            <button id="seleccionar" class="card-btn" onClick="selectCard(${i})">${mostrarIcono}</button>
+            ${i > 1 ? deleteBtn : ""}
         </div>
-        <button id="seleccionar" class="card-btn" onClick="selectCard(${i})">${mostrarIcono}</button>
-    </div>
-    `
+        `
     })
 
     if(buscarModo() != null){
@@ -128,23 +136,24 @@ function insertContent(){
     let newCustomCard = document.getElementById(`opcion${getList().length}`);
     newCustomCard.innerHTML =
     `
-    <input id="valorTitulo" type="text" class="" name="titulo"  minlengmth="4" maxlength="20" size="20"  required autofocus/>
+    <input id="valorTitulo" type="text" class="input-titulo" name="titulo"  minlengmth="4" maxlength="20" size="20"  placeholder="Nombre" required autofocus/>
     <div class="card-info">
-        <div class="card-info-rows">
-        <ul>
-            <li>Pomodoro</li>
-            <li>Descanso</li>
-            <li>Descanso largo</li>
-        </ul>
+        <div class="card-info-rows custom-list">
+            <ul>
+                <li>Pomodoro</li>
+                <li>Descanso</li>
+                <li>Descanso largo</li>
+            </ul>
+        </div>
+        <div class="card-info-values custom-values">
+            <ul>
+                <li><input id="valorPom" class="input-nbr" type="number" min="1" max="120" required> min</li>
+                <li><input id="valorDes" class="input-nbr" type="number" min="1" max="120" required> min</li>
+                <li><input id="valorLargo" class="input-nbr" type="number" min="1" max="120" required> min</li>
+            </ul>
+        </div>
     </div>
-    <div class="card-info-values">
-        <ul>
-            <li><input id="valorPom" type="number" min="1" max="120" required> min</li>
-            <li><input id="valorDes" type="number" min="1" max="120" required> min</li>
-            <li><input id="valorLargo" type="number" min="1" max="120" required> min</li>
-        </ul>
-    </div>
-    <button id="seleccionar" class="card-btn" onClick="encontrarValor()"> Guardar</button>
+    <button id="seleccionar" class="card-btn custom-btn" onClick="encontrarValor()">Guardar</button>
     `
 }
 
@@ -173,4 +182,13 @@ function encontrarValor(){
     localStorage.removeItem('listado');
     setList(getList);
     renderList(getList); 
+}
+
+function deleteCard(index){
+    let list = JSON.parse(localStorage.getItem("listado"));
+    list.splice(index,1);
+    localStorage.removeItem('listado');
+    localStorage.removeItem('modo');
+    setList(list);
+    renderList(list);
 }

@@ -224,6 +224,7 @@ a{
 }
 
 button{
+    appearance: none;
     border: none;
     background-color: transparent;
 }
@@ -297,11 +298,12 @@ button i{
 }
 
 .card{
+    position: relative;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     width: clamp(300px, 300px, 400px);
-    height: 250px;
+    height: clamp(250px, 270px, 400px);
     border-radius: 15px;
     background-color: white;
     border: 2px transparent solid;
@@ -320,13 +322,17 @@ button i{
     font-family: 'Outfit', sans-serif;
     background-color: rgba(216, 216, 216, 0.705);
     color: rgb(0, 0, 0);
-    backdrop-filter: blur(20px);
 }
 
-.card-info-values input{
-    width: 30px;
-    padding-left: 5px;
-    border-radius: 5px;
+.input-titulo{
+    position: relative;
+    top: 20px;
+    left: -20px;
+    margin-bottom: 30px;
+}
+
+.custom-list li{
+    padding-bottom: 10px;
 }
 
 .card-title{
@@ -340,6 +346,18 @@ button i{
     display: inline-block;
     width: 240px;
     border-bottom: 1px solid rgb(129, 129, 129);
+}
+
+.card-delete-btn{
+    position: absolute;
+    right: 35px;
+    top: 27px;
+    
+}
+
+.fa-trash-can{
+    color: var(--title-color);
+    font-size: 1.32em;
 }
 
 .card-info{
@@ -365,13 +383,22 @@ button i{
     text-align: end;
 }
 
+.card-info-values input{
+    width: 40px;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.custom-values{
+    right: -55px;
+}
 
 .card-btn{
     position: relative;
     width: 150px;
     height: 35px;
     padding: 5px 0px 6px 0px;
-    margin-top: 35px;
+    margin-top: 45px;
     border-radius: 10px;
     background-color: var(--test-color);
     cursor: pointer;
@@ -381,6 +408,9 @@ button i{
     transition-timing-function: ease;
 }
 
+.custom-btn{
+    margin-top: 28px;
+}
 
 .custom-card-btn{
     position: relative;
@@ -432,11 +462,12 @@ button i{
     animation-fill-mode:forwards;
 }
 
-.seleccionado button{
+.seleccionado .card-btn{
     background-color: var(--progressBar-color);
     width: 35px;
     border-radius: 20px;
 }
+
 
 
 @keyframes showBorder{
@@ -457,3 +488,4 @@ button i{
         border: 2px transparent solid;
     }
 }
+
