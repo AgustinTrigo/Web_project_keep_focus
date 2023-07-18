@@ -34,6 +34,9 @@ a{
     text-decoration: none;
 }
 
+button:hover{
+    cursor: pointer;
+}
 /* Boton menu hamburguesa */
 .navbar-btn{
     display: inline-block;
@@ -168,7 +171,7 @@ a{
     "top"
     "mid"
     "bottom";
-    gap: 0px 0px;
+    gap: 20px 0px;
     height: clamp(500px, 100vh, 743px);
     justify-items: center;
 }
@@ -177,12 +180,12 @@ a{
     grid-area: top;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 150px 1fr;
-    grid-template-areas: 
+    grid-template-rows: 55px 80px 1fr 1fr;
+    grid-template-areas:
+    "." 
     "tittle"
+    "subtittle"
     "progress";
-    gap: 10px;
-
 }
 
 .mid-container{
@@ -265,25 +268,46 @@ button i{
 .pomodoro-type{
     grid-area: tittle;
     position: relative;
-    top: 80%;
-    max-height: 150px;
+    top: 35%;
+    max-height: 50px;
+    text-align: center;
 }
 
 .pomodoro-type h2{
     font-weight: 500;
     font-size: 1.5em;
-    color: var(--title-color);
+    color: #444444;
+}
+
+.pomodoro-type::after{
+    content: "";
+    display: inline-block;
+    border-bottom: 1px solid rgb(141, 141, 141);
+    width: 200px;
 }
 
 
 .pomodoro-progreso{
     grid-area: progress;
+    padding-top: 10px;
 }
+
+.progressDots{
+    stroke: rgb(94, 94, 94);
+    stroke-width: 1px;
+    fill: none;
+
+}
+
 
 /* Playlist Cards */
 
 .main-container{
     height: clamp(500px, 100vh, 743px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 
@@ -415,7 +439,6 @@ button i{
 .custom-card-btn{
     position: relative;
     top: 80px;
-    left: 30px;
     width: 300px;
     border-radius: 10px;
     height: 40px;
