@@ -60,17 +60,30 @@ const runTimer = () =>{
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             
             progresoPom.length % 2 == 0 ? limite = selectedPom.workingTime : limite = selectedPom.descansoCorto;
-           
+            let lastType = progresoPom.findLast((e)=>e)
+            lastType == "LR" ? limite = selectedPom.descansoLargo : limite;
             calcularPorcentaje(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             
             if(difTiempoTranscurrido >= limite){
 
                 let lastType = progresoPom.findLast((e)=>e)
+                console.log(lastType)
+                console.log(progresoPom)
                 if(lastType == "W"){
                     progresoPom.push("R");
-                }else{
+                    let lastType = progresoPom.findLast((e)=>e)
+                    console.log(progresoPom);
+                }else if(lastType == "R" || lastType == undefined || progresoPom.length == 7){
                     progresoPom.push("W");
+                    let lastType = progresoPom.findLast((e)=>e)
+                    console.log(progresoPom);
+                }
+                
+                if(progresoPom.length == 7){
+                    progresoPom.push("LR");
+                    let lastType = progresoPom.findLast((e)=>e)
+                    console.log(progresoPom);
                 }
                             
                 clearInterval(interval)

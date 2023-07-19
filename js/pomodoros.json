@@ -1,9 +1,9 @@
 [
     {
         "opcion":"Normal",
-        "tiempoPomodoro": 25,
-        "tiempoDescanso": 5,
-        "tiempoDescansoLargo": 15,
+        "tiempoPomodoro": 0.25,
+        "tiempoDescanso": 0.10,
+        "tiempoDescansoLargo": 1,
         "intervalos": 
         {
             "work": 8,
