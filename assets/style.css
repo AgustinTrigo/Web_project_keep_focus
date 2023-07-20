@@ -7,10 +7,15 @@
 :root{
     --bg-color: #e7e4e4;
     --navbar-color: #153243;
+    --display-color: #153243;
     --btns-color: #03CEA4;
     --progressBar-color: #FF3C38;
     --title-color: #153243;
-    --test-color: #388eff;
+    --subtitle-color: #153243;
+    --main-btn: #388eff;
+    --hamburg-btn: #ffffff;
+    --menuList-btn: #ffffff;
+    --stroke-color: #ffffff;
 }
 
 body{
@@ -52,7 +57,7 @@ button:hover{
 
 .navbar-btn-box{
     position: relative;
-    background-color: white;
+    background-color: var(--hamburg-btn);
     width: 32px;
     height: 4px;
     margin-bottom: 5px;
@@ -62,7 +67,7 @@ button:hover{
 .navbar-btn-inner::before, .navbar-btn-inner::after{
     content: "";
     display: block;
-    background-color: white;
+    background-color: var(--hamburg-btn);
     width: 32px;
     height: 4px;
     position: absolute;
@@ -102,7 +107,7 @@ button:hover{
 .display-menu{
     transition: .8s;
     height: 100vh;
-    background-color: #204b64;
+    background-color: var(--display-color);
 }
 
 .navbar-menu{
@@ -123,7 +128,7 @@ button:hover{
 }
 
 .navbar-menu a{
-    color: white;
+    color: var(--menuList-btn);
 }
 
 .display-menu .navbar-menu li:nth-child(1){
@@ -223,7 +228,7 @@ button:hover{
     text-align: center;
     font-family: 'Outfit', sans-serif;
     font-size: 1.2em;
-    color: #272f3f; 
+    color: var(--subtitle-color);
 }
 
 button{
@@ -243,7 +248,7 @@ button{
 }
 
 .outsideCircle{
-    stroke: white;
+    stroke: var(--stroke-color);
     fill: none;
     stroke-width: 10px;
 }
@@ -258,7 +263,7 @@ button{
 
 button i{
     font-size: 4em;
-    color: var(--test-color);
+    color: var(--main-btn);
 }
 
 .contadorBtn, .contadorBtnStop :hover{
