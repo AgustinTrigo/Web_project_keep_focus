@@ -37,6 +37,7 @@ if(modoSeleccionado === null){
 let selectedPom = {};
 let progresoPom = [];
 
+let ciclosCompletados = 0;
 
 // DECLARACION DE FUNCIONES
 
@@ -53,6 +54,11 @@ const generarTiempo = (milisegundos) =>{
 
 const runTimer = () =>{
     if(!isRunning){
+        if(progresoPom.length == 15){
+            progresoPom.splice(0,15);
+            let getDots = document.querySelectorAll(".progressDots");
+            getDots.forEach((e)=>{e.style.fill = "#ffffff"})
+        }
         tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
         let limite = "";
         interval = setInterval(()=>{ 
@@ -60,30 +66,26 @@ const runTimer = () =>{
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             
             progresoPom.length % 2 == 0 ? limite = selectedPom.workingTime : limite = selectedPom.descansoCorto;
-            let lastType = progresoPom.findLast((e)=>e)
-            lastType == "LR" ? limite = selectedPom.descansoLargo : limite;
+            progresoPom.length == 7 ? limite = selectedPom.descansoLargo : limite;
             calcularPorcentaje(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             
             if(difTiempoTranscurrido >= limite){
-
                 let lastType = progresoPom.findLast((e)=>e)
-                console.log(lastType)
-                console.log(progresoPom)
                 if(lastType == "W"){
                     progresoPom.push("R");
-                    let lastType = progresoPom.findLast((e)=>e)
-                    console.log(progresoPom);
-                }else if(lastType == "R" || lastType == undefined || progresoPom.length == 7){
+
+                }else if(lastType == "R" || lastType == undefined){
                     progresoPom.push("W");
-                    let lastType = progresoPom.findLast((e)=>e)
-                    console.log(progresoPom);
+		            let index = progresoPom.length - 1;
+		            let getDot = document.getElementById(`dot${index}`)
+		            getDot.style.fill = "#FF3C38";
+
                 }
-                
-                if(progresoPom.length == 7){
-                    progresoPom.push("LR");
-                    let lastType = progresoPom.findLast((e)=>e)
-                    console.log(progresoPom);
+
+                if(progresoPom.length == 15){
+                    ciclosCompletados += 1;
+                    localStorage.setItem("ciclosCompletos", JSON.stringify(ciclosCompletados))
                 }
                             
                 clearInterval(interval)
@@ -91,8 +93,8 @@ const runTimer = () =>{
                 diferenciaTiempo = 0;
                 tiempoTranscurrido  = 0;
                 cambiarBoton(!isRunning);
-                
             }
+
         },100)
     }
     cambiarBoton(isRunning);

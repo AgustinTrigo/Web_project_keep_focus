@@ -10,12 +10,13 @@
     --display-color: #153243;
     --btns-color: #03CEA4;
     --progressBar-color: #FF3C38;
-    --title-color: #153243;
+    --title-color: #000000;
     --subtitle-color: #153243;
-    --main-btn: #388eff;
+    --main-btn: #2d6fff;
     --hamburg-btn: #ffffff;
     --menuList-btn: #ffffff;
     --stroke-color: #ffffff;
+    --dots-color: #ffffff;
 }
 
 body{
@@ -281,7 +282,7 @@ button i{
 .pomodoro-type h2{
     font-weight: 500;
     font-size: 1.5em;
-    color: #444444;
+    color: var(--title-color);
 }
 
 .pomodoro-type::after{
@@ -298,9 +299,9 @@ button i{
 }
 
 .progressDots{
-    stroke: rgb(94, 94, 94);
+    stroke: rgb(66, 66, 66);
     stroke-width: 1px;
-    fill: none;
+    fill: var(--dots-color);
 
 }
 
@@ -308,11 +309,10 @@ button i{
 /* Playlist Cards */
 
 .main-container{
-    height: clamp(500px, 100vh, 743px);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    justify-content : center;
 }
 
 
@@ -429,7 +429,7 @@ button i{
     padding: 5px 0px 6px 0px;
     margin-top: 45px;
     border-radius: 10px;
-    background-color: var(--test-color);
+    background-color: var(--main-btn);
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     color: white;
@@ -441,9 +441,12 @@ button i{
     margin-top: 28px;
 }
 
-.custom-card-btn{
+.custom-card-btn-container{
     position: relative;
     top: 80px;
+}
+
+.custom-card-btn{
     width: 300px;
     border-radius: 10px;
     height: 40px;
