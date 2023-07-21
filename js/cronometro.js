@@ -95,7 +95,7 @@ const runTimer = () =>{
                 cambiarBoton(!isRunning);
             }
 
-        },100)
+        },10)
     }
     cambiarBoton(isRunning);
 }

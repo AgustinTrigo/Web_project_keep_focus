@@ -17,6 +17,7 @@
     --menuList-btn: #ffffff;
     --stroke-color: #ffffff;
     --dots-color: #ffffff;
+    --top-box-bg-color: #000000;
 }
 
 body{
@@ -172,12 +173,13 @@ button:hover{
 .container{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 235px 1fr 150px;
-    grid-template-areas: 
+    grid-template-rows: 56px 200px 1fr 100px;
+    grid-template-areas:
+    "."
     "top"
     "mid"
     "bottom";
-    gap: 20px 0px;
+    gap: 20px;
     height: clamp(500px, 100vh, 743px);
     justify-items: center;
 }
@@ -186,12 +188,13 @@ button:hover{
     grid-area: top;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 55px 80px 1fr 1fr;
+    grid-template-rows: 70px 70px 60px;
     grid-template-areas:
-    "." 
     "tittle"
     "subtittle"
     "progress";
+    /* background-color: var(--top-box-bg-color);
+    border-radius: 10px; */
 }
 
 .mid-container{
@@ -200,6 +203,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .bottom-container{
