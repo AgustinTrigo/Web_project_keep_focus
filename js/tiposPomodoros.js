@@ -9,15 +9,10 @@ const buscarModo = () => {
 const setList = (list) => {localStorage.setItem("listado", JSON.stringify(list))};
 const getList = () => {return mostrarListado = JSON.parse(localStorage.getItem("listado"));}
 
-/*
 
-let deleteBtn = `<button class="card-delete-btn" onClick="deleteCard(${i})"><i class="fa-regular fa-trash-can"></i></button>`
-${}
-*/
 fetch('js/pomodoros.json')
     .then((resultado) => resultado.json())
     .then((data) => {
-        console.log(getList())
         getList() == null ? setList(data) : setList(getList());
         renderList(getList());
     })
@@ -108,35 +103,38 @@ function selectCard(index){
 
 // Funcion para crear un nuevo objeto
 
-let createBtn = document.querySelector(".custom-card-btn");
-createBtn.addEventListener("click", crearNuevo)
+let createBtn = document.querySelector(".custom-card-btn").addEventListener("click", crearNuevo);
+let creado = true;
+const errorNombre = `<h6>Nombre repetido, porfavor eliga uno distinto</h6>`;
+const errorDatos = `<h6>Por favor completa todos los campos</h6>`;
+
 
 function crearNuevo(){
-    
-    customCard()
+
+    creado === true ? customCard() : "";
 
 }
 
 
 function customCard(){
     
-    let getList = JSON.parse(localStorage.getItem("listado"))
-    let idNbr = getList.length;
-    let cardsContainer = document.getElementById("cardSection")
-    console.log(cardsContainer)
-    let newCard = document.createElement("div")
-    newCard.setAttribute("id",`opcion${idNbr}`)
+    let idNbr = getList().length;
+    let cardsContainer = document.getElementById("cardSection");
+    let newCard = document.createElement("div");
+    newCard.setAttribute("id",`opcion${idNbr}`);
     newCard.className = "card";
-    cardsContainer.appendChild(newCard)
+    cardsContainer.appendChild(newCard);
+    creado = false;
     insertContent();
-    
+
 }
 
 function insertContent(){
+
     let newCustomCard = document.getElementById(`opcion${getList().length}`);
     newCustomCard.innerHTML =
     `
-    <input id="valorTitulo" type="text" class="input-titulo" name="titulo"  minlengmth="4" maxlength="20" size="20"  placeholder="Nombre" required autofocus/>
+    <input id="valorTitulo" type="text" class="input-titulo" name="titulo"  minlengmth="4" maxlength="20" size="20"  placeholder="Nombre" />
     <div class="card-info">
         <div class="card-info-rows custom-list">
             <ul>
@@ -153,11 +151,11 @@ function insertContent(){
             </ul>
         </div>
     </div>
-    <button id="seleccionar" class="card-btn custom-btn" onClick="encontrarValor()">Guardar</button>
+    <button id="seleccionar" class="card-btn custom-btn" onClick="guardarValores()">Guardar</button>
     `
 }
 
-function encontrarValor(){
+function guardarValores(){
     let titleValue = document.getElementById("valorTitulo");
     let pomValue = document.getElementById("valorPom");    
     let desValue = document.getElementById("valorDes");
@@ -177,11 +175,22 @@ function encontrarValor(){
         }
     }
 
-    let getList = JSON.parse(localStorage.getItem("listado"))
-    getList.push(nuevoObjt);
+    let nuevoListado = getList();
+    for(nombre of nuevoListado){
+        if(nuevoObjt.opcion === nombre.opcion){
+            cardSection.innerHTML += errorNombre;
+            throw "Error 01";
+        }else if(nuevoObjt.opcion === "" || isNaN(nuevoObjt.tiempoPomodoro) || isNaN(nuevoObjt.tiempoDescanso) || isNaN(nuevoObjt.tiempoDescansoLargo)){
+            cardSection.innerHTML += errorDatos;
+            throw "Error 02";
+        }
+    }
+
+    creado = true;
+    nuevoListado.push(nuevoObjt);
     localStorage.removeItem('listado');
-    setList(getList);
-    renderList(getList); 
+    setList(nuevoListado);
+    renderList(nuevoListado); 
 }
 
 function deleteCard(index){

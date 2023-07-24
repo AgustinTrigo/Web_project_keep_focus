@@ -20,6 +20,10 @@
     --top-box-bg-color: #000000;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background-color: var(--bg-color);
     /* background-image: linear-gradient(to bottom, #c9c5c7, var(--bg-color)); */
@@ -44,6 +48,7 @@ a{
 button:hover{
     cursor: pointer;
 }
+
 /* Boton menu hamburguesa */
 .navbar-btn{
     display: inline-block;
@@ -313,16 +318,23 @@ button i{
 /* Playlist Cards */
 
 .main-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content : center;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px 80px 1fr 100px;
+    grid-template-areas: 
+    "."
+    "customCardBtn"
+    "cardSection"
+    "footer";
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
 }
 
 
 .cards-container{
-    position: relative;
-    top: 100px;
+    grid-area: cardSection;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -384,7 +396,7 @@ button i{
 .card-delete-btn{
     position: absolute;
     right: 35px;
-    top: 27px;
+    top: 25px;
     
 }
 
@@ -445,26 +457,21 @@ button i{
     margin-top: 28px;
 }
 
-.custom-card-btn-container{
-    position: relative;
-    top: 80px;
-}
 
 .custom-card-btn{
+    grid-area: customCardBtn;
     width: 300px;
     border-radius: 10px;
     height: 40px;
+    padding-top: 8px;
     background-color: white;
     border: 1px solid #243945e7;
-    /* box-shadow: 0px 0px 7px -1px rgba(36, 36, 36, 0.411); */
-    
-}
-
-.custom-card-btn h3{
     color: #243945e7;
     font-weight: 500;
     text-align: center;
     font-family: 'Outfit', sans-serif;
+    
+    /* box-shadow: 0px 0px 7px -1px rgba(36, 36, 36, 0.411); */
     
 }
 
@@ -503,6 +510,14 @@ button i{
     border-radius: 20px;
 }
 
+.cards-container h6{
+    color: red;
+    max-width: 300px;
+}
+
+.footerPlaylist{
+    grid-area: footer;
+}
 
 
 @keyframes showBorder{
