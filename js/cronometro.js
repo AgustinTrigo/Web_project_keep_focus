@@ -79,7 +79,7 @@ const runTimer = () =>{
                     progresoPom.push("W");
 		            let index = progresoPom.length - 1;
 		            let getDot = document.getElementById(`dot${index}`)
-		            getDot.style.fill = "#FF3C38";
+		            getDot.style.fill = "#86efac";
 
                 }
 
