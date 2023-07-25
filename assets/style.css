@@ -5,9 +5,10 @@
 }
 
 :root{
-    --bg-color: #e7e4e4;
-    --navbar-color: #153243;
-    --display-color: #153243;
+    --main-color: #e7e4e4;
+    --bg-color: var(--main-color);
+    --navbar-color: var(--main-color);
+    --display-color: var(--main-color);
     --btns-color: #03CEA4;
     --progressBar-color: #FF3C38;
     --title-color: #000000;
