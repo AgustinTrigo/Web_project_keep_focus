@@ -5,20 +5,18 @@
 }
 
 :root{
-    --main-color: #fafaf9;
-    --bg-color: var(--main-color);
-    --navbar-color: var(--main-color);
-    --display-color: #e9e6e6;
-    --btns-color: #03CEA4;
-    --progressBar-color: #48e682;
-    --title-color: #000000;
-    --subtitle-color: #000000;
-    --main-btn: #000000;
-    --hamburg-btn: #000000;
-    --menuList-btn: #000000;
-    --stroke-color: #d4d4d4;
-    --dots-color: #ffffff;
-    --top-box-bg-color: #000000;
+    --color-bg: #fafaf9;
+    --color-main-bg: var(--color-main-bg);
+    --color-navbar-bg: var(--color-main-bg);
+    --color-display-menu: #e9e6e6;
+    --color-hamburg-btn: #000000;
+    --color-title-h2: #000000;
+    --color-main-btn: #000000;
+    --color-display-menu-li: #000000;
+    --color-progressBar: #48e682;
+    --color-stroke: #d4d4d4;
+    --color-puntosCiclo: #ffffff;
+    --color-contador: #000000;
 }
 
 html{
@@ -26,13 +24,13 @@ html{
 }
 
 body{
-    background-color: var(--bg-color);
+    background-color: var(--color-main-bg);
     /* background-image: linear-gradient(to bottom, #c9c5c7, var(--bg-color)); */
     font-family: 'Outfit', sans-serif;
 }
 
 .navbar{
-    background-color: var(--navbar-color);
+    background-color: var(--color-navbar-bg);
     position: fixed;
     min-width: 100vw;
     top: 0px;
@@ -65,7 +63,7 @@ button:hover{
 
 .navbar-btn-box{
     position: relative;
-    background-color: var(--hamburg-btn);
+    background-color: var(--color-hamburg-btn);
     width: 32px;
     height: 4px;
     margin-bottom: 5px;
@@ -75,7 +73,7 @@ button:hover{
 .navbar-btn-inner::before, .navbar-btn-inner::after{
     content: "";
     display: block;
-    background-color: var(--hamburg-btn);
+    background-color: var(--color-hamburg-btn);
     width: 32px;
     height: 4px;
     position: absolute;
@@ -115,7 +113,7 @@ button:hover{
 .display-menu{
     transition: .8s;
     height: 100vh;
-    background-color: var(--display-color);
+    background-color: var(--color-display-menu);
 }
 
 .navbar-menu{
@@ -136,7 +134,7 @@ button:hover{
 }
 
 .navbar-menu a{
-    color: var(--menuList-btn);
+    color: var(--color-display-menu-li);
 }
 
 .display-menu .navbar-menu li:nth-child(1){
@@ -240,12 +238,12 @@ button:hover{
     text-align: center;
     font-family: 'Outfit', sans-serif;
     font-size: 1.2em;
-    color: #b35200;
+    color: var(--color-contador);
     backdrop-filter: blur(20px);
     border-radius: 50px;
     border: 1px solid rgb(169 169 169);
     background-color: #ffffff;
-    box-shadow: 20px 20px 60px #c6c4c4, -20px -20px 60px #ffffff;
+    box-shadow: 0px 0px 60px #c6c4c4, 0px 0px 60px #ffffff;
 }
 
 button{
@@ -265,14 +263,14 @@ button{
 }
 
 .outsideCircle{
-    stroke: var(--stroke-color);
+    stroke: var(--color-stroke);
     fill: none;
     stroke-width: 10px;
 }
 
 .progressCircle{
     fill:none;
-    stroke: var(--progressBar-color);
+    stroke: var(--color-progressBar);
     stroke-width: 10px;
     transform: rotate(-90deg);
     transform-origin: center;
@@ -280,7 +278,7 @@ button{
 
 button i{
     font-size: 4em;
-    color: var(--main-btn);
+    color: var(--color-main-btn);
 }
 
 .contadorBtn, .contadorBtnStop :hover{
@@ -298,7 +296,7 @@ button i{
 .pomodoro-type h2{
     font-weight: 500;
     font-size: 1.5em;
-    color: var(--title-color);
+    color: var(--color-title-h2);
 }
 
 .pomodoro-type::after{
@@ -317,7 +315,7 @@ button i{
 .progressDots{
     stroke: rgb(66, 66, 66);
     stroke-width: 1px;
-    fill: var(--dots-color);
+    fill: var(--color-puntosCiclo);
 
 }
 
@@ -512,7 +510,7 @@ button i{
 }
 
 .seleccionado .card-btn{
-    background-color: var(--progressBar-color);
+    background-color: var(--color-progressBar);
     width: 35px;
     border-radius: 20px;
 }
