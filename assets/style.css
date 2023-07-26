@@ -6,8 +6,8 @@
 
 :root{
     --color-bg: #fafaf9;
-    --color-main-bg: var(--color-main-bg);
-    --color-navbar-bg: var(--color-main-bg);
+    --color-main-bg: var(--color-bg);
+    --color-navbar-bg: var(--color-bg);
     --color-display-menu: #e9e6e6;
     --color-hamburg-btn: #000000;
     --color-title-h2: #000000;
