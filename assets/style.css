@@ -406,7 +406,7 @@ button i{
 }
 
 .fa-trash-can{
-    color: var(--title-color);
+    color: var(--color-main-btn);
     font-size: 1.32em;
 }
 
@@ -450,7 +450,7 @@ button i{
     padding: 5px 0px 6px 0px;
     margin-top: 45px;
     border-radius: 10px;
-    background-color: var(--main-btn);
+    background-color: var(--color-main-btn);
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
     color: white;
