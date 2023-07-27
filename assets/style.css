@@ -5,18 +5,18 @@
 }
 
 :root{
-    --color-bg: #fafaf9;
+    --color-bg: #F5F5F5;
     --color-main-bg: var(--color-bg);
     --color-navbar-bg: var(--color-bg);
-    --color-display-menu: #e9e6e6;
-    --color-hamburg-btn: #000000;
-    --color-title-h2: #000000;
-    --color-main-btn: #000000;
+    --color-display-menu: #F5F5F5;
+    --color-hamburg-btn: #1d445d;
+    --color-title-h2: #3d3d3d;
+    --color-main-btn: #1d445d;
     --color-display-menu-li: #000000;
     --color-progressBar: #48e682;
-    --color-stroke: #d4d4d4;
+    --color-stroke: #ffffff;
     --color-puntosCiclo: #ffffff;
-    --color-contador: #000000;
+    --color-contador: #1d445d;
 }
 
 html{
@@ -233,7 +233,7 @@ button:hover{
 .contador{
     width: 100px;
     height: 40px;
-    margin-top: 8px;
+    margin-top: 15px;
     padding-top: 7px;
     text-align: center;
     font-family: 'Outfit', sans-serif;
@@ -243,7 +243,6 @@ button:hover{
     border-radius: 50px;
     border: 1px solid rgb(169 169 169);
     background-color: #ffffff;
-    box-shadow: 0px 0px 60px #c6c4c4, 0px 0px 60px #ffffff;
 }
 
 button{
@@ -302,7 +301,7 @@ button i{
 .pomodoro-type::after{
     content: "";
     display: inline-block;
-    border-bottom: 1px solid rgb(141, 141, 141);
+    border-bottom: 1px solid rgb(186, 186, 186);
     width: 200px;
 }
 
@@ -313,12 +312,16 @@ button i{
 }
 
 .progressDots{
-    stroke: rgb(66, 66, 66);
+    stroke: rgb(132, 132, 132);
     stroke-width: 1px;
     fill: var(--color-puntosCiclo);
 
 }
 
+.externalStroke, .innerStroke{
+    stroke: rgb(146, 146, 146);
+    fill: none;
+}
 
 /* Playlist Cards */
 
@@ -530,14 +533,14 @@ button i{
         border: 2px transparent solid;
     }
     25%{
-        border-top: 2px var(--progressBar-color) solid;
+        border-top: 2px var(--color-progressBar) solid;
     }
     50%{
-        border-right: 2px var(--progressBar-color) solid;
-        border-left: 2px var(--progressBar-color) solid;
+        border-right: 2px var(--color-progressBar) solid;
+        border-left: 2px var(--color-progressBar) solid;
     }
     75%{
-        border: 2px var(--progressBar-color) solid;
+        border: 2px var(--color-progressBar) solid;
     }
     100%{
         border: 2px transparent solid;
