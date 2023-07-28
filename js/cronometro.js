@@ -39,7 +39,26 @@ let progresoPom = [];
 
 let ciclosCompletados = 0;
 
+let resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", resetPomodoro);
+
+
+
+
 // DECLARACION DE FUNCIONES
+
+function resetPomodoro(){
+    clearInterval(interval)
+    diferenciaTiempo = 0;
+    tiempoTranscurrido  = 0;
+    cambiarBoton(!isRunning);
+    cronometro.innerHTML = "00:00";
+    progressCircle.style.strokeDashoffset = circunferencia;
+    progresoPom = [];
+    let getDots = document.querySelectorAll(".progressDots");
+    getDots.forEach((e)=>{e.style.fill = "#ffffff"});
+}
+
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;

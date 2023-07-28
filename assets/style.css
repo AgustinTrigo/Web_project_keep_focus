@@ -12,7 +12,7 @@
     --color-hamburg-btn: #1d445d;
     --color-title-h2: #3d3d3d;
     --color-main-btn: #1d445d;
-    --color-display-menu-li: #000000;
+    --color-display-menu-li: #1d445d;
     --color-progressBar: #48e682;
     --color-stroke: #ffffff;
     --color-puntosCiclo: #ffffff;
@@ -321,6 +321,17 @@ button i{
 .externalStroke, .innerStroke{
     stroke: rgb(146, 146, 146);
     fill: none;
+}
+
+.reset-btn{
+    position: absolute;
+    bottom: 55px;
+    right: 45px;
+}
+
+.reset-btn i{
+    font-size: 1.5em;
+    color: var(--color-main-btn);
 }
 
 /* Playlist Cards */
