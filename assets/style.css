@@ -9,10 +9,10 @@
     --color-main-bg: var(--color-bg);
     --color-navbar-bg: var(--color-bg);
     --color-display-menu: #F5F5F5;
-    --color-hamburg-btn: #1d445d;
+    --color-hamburg-btn: #252525;
     --color-title-h2: #3d3d3d;
     --color-main-btn: #1d445d;
-    --color-display-menu-li: #1d445d;
+    --color-display-menu-li: #252525;
     --color-progressBar: #48e682;
     --color-stroke: #ffffff;
     --color-puntosCiclo: #ffffff;
@@ -113,7 +113,8 @@ button:hover{
 .display-menu{
     transition: .8s;
     height: 100vh;
-    background-color: var(--color-display-menu);
+    /* background-color: var(--color-display-menu); */
+    background-image: linear-gradient(to bottom, var(--color-display-menu),  #eaeaea);
 }
 
 .navbar-menu{
