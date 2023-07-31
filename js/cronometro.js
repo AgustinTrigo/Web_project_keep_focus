@@ -49,7 +49,7 @@ resetBtn.addEventListener("click", resetPomodoro);
 
 function resetPomodoro(){
     let modal = document.querySelector(".modal")
-    modal.style.display = "block";
+    modal.style.display = "flex";
     
     let aceptarBtn = document.getElementById("aceptarBtn");
     let cancelarBtn = document.getElementById("cancelar");
