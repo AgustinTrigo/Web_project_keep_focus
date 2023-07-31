@@ -48,6 +48,19 @@ resetBtn.addEventListener("click", resetPomodoro);
 // DECLARACION DE FUNCIONES
 
 function resetPomodoro(){
+    let modal = document.querySelector(".modal")
+    modal.style.display = "block";
+    
+    let aceptarBtn = document.getElementById("aceptarBtn");
+    let cancelarBtn = document.getElementById("cancelar");
+
+    aceptarBtn.addEventListener("click", reiniciarDatos);
+    cancelarBtn.addEventListener("click", ()=>{modal.style.display = "none";})
+
+
+}
+
+function reiniciarDatos(){
     clearInterval(interval)
     diferenciaTiempo = 0;
     tiempoTranscurrido  = 0;
@@ -57,8 +70,10 @@ function resetPomodoro(){
     progresoPom = [];
     let getDots = document.querySelectorAll(".progressDots");
     getDots.forEach((e)=>{e.style.fill = "#ffffff"});
-}
+    let modal = document.querySelector(".modal")
+    modal.style.display = "none";
 
+}
 
 const agregarCero = (numero) =>{
     return numero < 10 ? "0" + numero : "" + numero;

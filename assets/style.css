@@ -559,3 +559,45 @@ button i{
     }
 }
 
+/* Alert para validar */
+
+.modal{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.6);
+    animation-name: showlist;
+    animation-delay: 0s;
+    animation-duration: 0.3s;
+}
+
+.alert{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 280px;
+    left: 40px;
+    width: 280px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid rgb(132, 132, 132);
+    border-radius: 15px;
+    
+}
+
+.alert p{
+    text-align: center;
+    padding: 45px 30px 15px 30px;
+    font-size: 1.2em;
+    color: var(--color-title-h2);
+}
+
+.cancelarBtn{
+    width: 40px;
+    background-color: #ff3232;
+}
+
+
