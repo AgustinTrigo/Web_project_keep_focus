@@ -7,8 +7,8 @@ let circunferencia = radio * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circunferencia;
 progressCircle.style.strokeDashoffset = circunferencia;
 
-let playIcon = `<i class="fa-solid fa-play"></i>`;
-let pauseIcon = `<i class="fa-solid fa-pause"></i>`;
+let playIcon = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-play"></i></button>`;
+let pauseIcon = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-pause"></i></button>`;
 
 let isRunning = false;
 let interval;
@@ -34,7 +34,7 @@ if(modoSeleccionado === null){
 }
 
 
-let selectedPom = {};
+let pomodoroSeleccionado = {};
 let progresoPom = [];
 
 let ciclosCompletados = 0;
@@ -99,9 +99,9 @@ const runTimer = () =>{
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             
-            progresoPom.length % 2 == 0 ? limite = selectedPom.workingTime : limite = selectedPom.descansoCorto;
-            progresoPom.length == 7 ? limite = selectedPom.descansoLargo : limite;
-            calcularPorcentaje(difTiempoTranscurrido, circunferencia, limite);
+            progresoPom.length % 2 == 0 ? limite = pomodoroSeleccionado.limiteTiempoTrabajo : limite = pomodoroSeleccionado.limiteTiempoDescanso;
+            progresoPom.length == 7 ? limite = pomodoroSeleccionado.limiteTiempoDescansoLargo : limite;
+            calcularProgreso(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             
             if(difTiempoTranscurrido >= limite){
@@ -134,16 +134,17 @@ const runTimer = () =>{
     cambiarBoton(isRunning);
 }
 
-const pauseTimer = () => {
+const pausarTiempo = () => {
     let tiempoEnPausa = new Date().getTime();
-    
     diferenciaTiempo = tiempoEnPausa - tiempoTranscurrido;
     clearInterval(interval);
-    
     cambiarBoton(!isRunning);
 }
 
-function calcularPorcentaje(tiempo, perimetro, tiempoLimite){
+// REFACTORIZADO ↓↓↓
+
+// Funcion para calcular el progreso del tiempo y mostrarlo en forma de barra progresiva. (PD. Optimizar)
+function calcularProgreso(tiempo, perimetro, tiempoLimite){
 	let porcentaje = (tiempo * 100) / tiempoLimite;
 	if(porcentaje <= 100 || porcentajeProgreso >= 0){
         porcentajeProgreso = perimetro - (perimetro * (porcentaje / 100)) 
@@ -151,59 +152,61 @@ function calcularPorcentaje(tiempo, perimetro, tiempoLimite){
 	}
 }
 
+
+// Funcion para cambiar el icono del boton de play y pausa.
 function cambiarBoton(flag){
+
     if(!flag){
-        flag = true;
-        flag ? btnsBox.innerHTML = `<button id="timerStopBtn" class="contadorBtnStop">${pauseIcon}</button>` : "";
-        let pauseBtn = document.getElementById("timerStopBtn");
-        pauseBtn.addEventListener("click", () =>{pauseTimer()});
+        flag = true ? btnsBox.innerHTML = pauseIcon : "";
+        document.getElementById("timerStopBtn").addEventListener("click", () =>{pausarTiempo()});
         return flag;
     }
     
     if(flag){
         flag = false;
-        !flag ? btnsBox.innerHTML = `<button id="timerBtn" class="contadorBtn">${playIcon}</button>` : "";
-        let startBtn = document.getElementById("timerBtn");
-        startBtn.addEventListener("click", () =>{runTimer()});
+        !flag ? btnsBox.innerHTML = playIcon : "";
+        document.getElementById("timerBtn").addEventListener("click", () =>{runTimer()});
         return flag;
     }
 }
 
-function seleccionarModo(typeSelected){
+// Setea el modo de pomodoro seleccionado o predeterminado
+function buscarModo(typeSelected){
     let getList = JSON.parse(localStorage.getItem("listado"));
-    mostrarLista(getList,typeSelected);
+    setearModo(getList,typeSelected);
     
 }
 
-function mostrarLista(list,typeSelected){
+// Setea el objeto con las variables para utilizar los limites de minutos en milisegundos.
+const setearListado = (array, tipoSeleccionado) =>{
+    array.forEach(element => {
+        if(element.opcion == tipoSeleccionado){
+            return  pomodoroSeleccionado = {
+                limiteTiempoTrabajo: element.tiempoPomodoro * 1000 * 60,
+                limiteTiempoDescanso: element.tiempoDescanso * 1000 * 60,
+                limiteTiempoDescansoLargo: descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60
+            }    
+        }
+    });
+}
+
+// Dependiendo si hay un modo de pomodoro seleccionado o no, setea los limites que utiliza el cronometro.
+function setearModo(list,typeSelected){
 
     if(list == null){
         fetch('js/pomodoros.json')
         .then((resultado)=> resultado.json())
         .then((data) =>{
-            data.forEach(element => {
-                if(element.opcion == typeSelected){
-                    limiteEnMs = element.tiempoPomodoro * 1000 * 60;
-                    descansoEnMs = element.tiempoDescanso * 1000 * 60;
-                    descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
-                }
-            });
-            selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs}; 
+            setearListado(data,typeSelected);
         })
     }else{
-        list.forEach(element => {
-            if(element.opcion == typeSelected){
-                limiteEnMs = element.tiempoPomodoro * 1000 * 60;
-                descansoEnMs = element.tiempoDescanso * 1000 * 60;
-                descansoLargoEnMs = element.tiempoDescansoLargo * 1000 * 60;
-            }
-        });
-        selectedPom = {workingTime: limiteEnMs, descansoCorto: descansoEnMs, descansoLargo: descansoLargoEnMs}; 
+        setearListado(list,typeSelected);
     }
     
 }
 
+
 // LLAMADAS
 cambiarBoton(!isRunning);
-seleccionarModo(modoSeleccionado);
+buscarModo(modoSeleccionado);
 

@@ -4,11 +4,11 @@
         "tiempoPomodoro": 0.25,
         "tiempoDescanso": 0.10,
         "tiempoDescansoLargo": 1,
-        "intervalos": 
+        "estadisticas": 
         {
-            "work": 8,
-            "rest": 6,
-            "longRest": 1
+            "ttt": "",
+            "ttd": "",
+            "ttdl": ""
         }
     },
     {
@@ -16,11 +16,11 @@
         "tiempoPomodoro": 40,
         "tiempoDescanso": 10,
         "tiempoDescansoLargo": 60,
-        "intervalos": 
+        "estadisticas": 
         {
-            "work": 8,
-            "rest": 6,
-            "longRest": 1
+            "ttt": "",
+            "ttd": "",
+            "ttdl": ""
         }
     }
 ]
