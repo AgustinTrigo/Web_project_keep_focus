@@ -7,6 +7,8 @@ let circunferencia = radio * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circunferencia;
 progressCircle.style.strokeDashoffset = circunferencia;
 
+document.getElementById("resetBtn").addEventListener("click", resetPomodoro);
+
 let playIcon = `<button id="timerBtn" class="contadorBtn"><i class="fa-solid fa-play"></i></button>`;
 let pauseIcon = `<button id="timerStopBtn" class="contadorBtnStop"><i class="fa-solid fa-pause"></i></button>`;
 
@@ -39,13 +41,11 @@ let progresoPom = [];
 
 let ciclosCompletados = 0;
 
-let resetBtn = document.getElementById("resetBtn");
-resetBtn.addEventListener("click", resetPomodoro);
-
 
 
 
 // DECLARACION DE FUNCIONES
+// REFACTORIZADO ↓↓↓
 
 function resetPomodoro(){
     let modal = document.querySelector(".modal")
@@ -86,24 +86,35 @@ const generarTiempo = (milisegundos) =>{
     return `${agregarCero(minutos)}:${agregarCero(parseInt(segundos))}`
 }
 
+const reiniciarCiclo = () =>{
+    if(progresoPom.length == 15){
+        progresoPom.splice(0,15);
+        let getDots = document.querySelectorAll(".progressDots");
+        getDots.forEach((e)=>{e.style.fill = "#ffffff"})
+    }
+}
+
+// Funcion iniciar cronometro.
 const runTimer = () =>{
     if(!isRunning){
-        if(progresoPom.length == 15){
-            progresoPom.splice(0,15);
-            let getDots = document.querySelectorAll(".progressDots");
-            getDots.forEach((e)=>{e.style.fill = "#ffffff"})
-        }
-        tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
+
+        reiniciarCiclo();
         let limite = "";
+        tiempoTranscurrido = new Date().getTime() - diferenciaTiempo; 
+        
         interval = setInterval(()=>{ 
             let tiempoActual = new Date().getTime();
             let difTiempoTranscurrido = tiempoActual - tiempoTranscurrido;
             
-            progresoPom.length % 2 == 0 ? limite = pomodoroSeleccionado.limiteTiempoTrabajo : limite = pomodoroSeleccionado.limiteTiempoDescanso;
-            progresoPom.length == 7 ? limite = pomodoroSeleccionado.limiteTiempoDescansoLargo : limite;
+            // Operador ternario anidado para determinar el limite de tiempo.
+            progresoPom.length % 2 == 0 ? limite = pomodoroSeleccionado.limiteTiempoTrabajo :
+            progresoPom.length == 7 ? limite = pomodoroSeleccionado.limiteTiempoDescansoLargo : 
+            limite = pomodoroSeleccionado.limiteTiempoDescanso;
+
             calcularProgreso(difTiempoTranscurrido, circunferencia, limite);
             cronometro.innerHTML = generarTiempo(difTiempoTranscurrido);
             
+            // (PENDIENTE OPTIMIZAR)
             if(difTiempoTranscurrido >= limite){
                 let lastType = progresoPom.findLast((e)=>e)
                 if(lastType == "W"){
@@ -113,7 +124,7 @@ const runTimer = () =>{
                     progresoPom.push("W");
 		            let index = progresoPom.length - 1;
 		            let getDot = document.getElementById(`dot${index}`)
-		            getDot.style.fill = "#86efac";
+		            getDot.style.fill = "var(--color-progressBar)";
 
                 }
 
@@ -135,13 +146,12 @@ const runTimer = () =>{
 }
 
 const pausarTiempo = () => {
+
     let tiempoEnPausa = new Date().getTime();
     diferenciaTiempo = tiempoEnPausa - tiempoTranscurrido;
     clearInterval(interval);
     cambiarBoton(!isRunning);
 }
-
-// REFACTORIZADO ↓↓↓
 
 // Funcion para calcular el progreso del tiempo y mostrarlo en forma de barra progresiva. (PD. Optimizar)
 function calcularProgreso(tiempo, perimetro, tiempoLimite){
@@ -177,7 +187,7 @@ function buscarModo(typeSelected){
     
 }
 
-// Setea el objeto con las variables para utilizar los limites de minutos en milisegundos.
+// Setea el objeto con las variables para utilizar los limites de minutos (del modo seleccionado) en milisegundos.
 const setearListado = (array, tipoSeleccionado) =>{
     array.forEach(element => {
         if(element.opcion == tipoSeleccionado){

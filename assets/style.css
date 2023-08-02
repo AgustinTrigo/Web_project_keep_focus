@@ -114,7 +114,7 @@ button:hover{
     transition: .8s;
     height: 100vh;
     /* background-color: var(--color-display-menu); */
-    background-image: linear-gradient(to bottom, var(--color-display-menu),  #eaeaea);
+    background-image: linear-gradient(180deg, var(--color-display-menu),  #dddbdb);
 }
 
 .navbar-menu{
@@ -333,6 +333,10 @@ button i{
 .reset-btn i{
     font-size: 1.5em;
     color: var(--color-main-btn);
+}
+
+.reset-btn:hover{
+    cursor: pointer;
 }
 
 /* Playlist Cards */
