@@ -10,15 +10,14 @@ navbarBtn.addEventListener("click", ()=>{
     navbarMenu.classList.toggle("display-menu");
     navbarMenu.appendChild(navbarMenuList);
     navbarMenuList.innerHTML = `
-    <li><a href="./index.html">Inicio</a></li>
-    <li><a href="./playlist.html">Playlist</a></li>
-    <li><a href="#">Información</a></li>
+    <li><a href="./index.html"><i class="fa-regular fa-clock"></i></a></li>
+    <li><a href="./playlist.html"><i class="fa-solid fa-list"></i></a></li>
+    <li><a href="#"><i class="fa-solid fa-circle-info"></i></a></li>
     `
     if(estadoMenu === "navbar display-menu"){
         navbarMenu.removeChild(navbarMenuList);
     }
 })
-
 
 
 

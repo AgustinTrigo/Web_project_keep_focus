@@ -4,11 +4,15 @@
         "tiempoPomodoro": 0.25,
         "tiempoDescanso": 0.10,
         "tiempoDescansoLargo": 1,
-        "estadisticas": 
+        "estadisticasPorFecha": [],
+        "estadisticasTotales":
         {
-            "ttt": "",
-            "ttd": "",
-            "ttdl": ""
+            "totalPomodorosCompletados": "",
+            "totalCiclosCompletados": "",
+            "totalTiempoTrabajado": "",
+            "totalTiempoDescansado": "",
+            "totalTiempoNeutro":"",
+            "totalTareasCompletadas":""
         }
     },
     {
@@ -16,11 +20,15 @@
         "tiempoPomodoro": 40,
         "tiempoDescanso": 10,
         "tiempoDescansoLargo": 60,
-        "estadisticas": 
+        "estadisticasPorFecha": [],
+        "estadisticasTotales":
         {
-            "ttt": "",
-            "ttd": "",
-            "ttdl": ""
+            "totalPomodorosCompletados": "",
+            "totalCiclosCompletados": "",
+            "totalTiempoTrabajado": "",
+            "totalTiempoDescansado": "",
+            "totalTiempoNeutro":"",
+            "totalTareasCompletadas":""
         }
     }
 ]

@@ -1,0 +1,9 @@
+            {
+                "fecha": "",
+                "pomodorosCompletados": "",
+                "ciclosCompletados": "",
+                "tiempoTrabajado": "",
+                "tiempoDescansado": "",
+                "tiempoNeutro": "",
+                "tareasCompletadas": ""
+            }

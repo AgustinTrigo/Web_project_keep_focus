@@ -132,7 +132,7 @@ const runTimer = () =>{
                     ciclosCompletados += 1;
                     localStorage.setItem("ciclosCompletos", JSON.stringify(ciclosCompletados))
                 }
-                            
+                actualizarEstadistica(modoSeleccionado);
                 clearInterval(interval)
                 difTiempoTranscurrido = 0;
                 diferenciaTiempo = 0;
@@ -143,6 +143,8 @@ const runTimer = () =>{
         },10)
     }
     cambiarBoton(isRunning);
+    /* actualizarEstadistica(modoSeleccionado); */
+    
 }
 
 const pausarTiempo = () => {
@@ -165,7 +167,6 @@ function calcularProgreso(tiempo, perimetro, tiempoLimite){
 
 // Funcion para cambiar el icono del boton de play y pausa.
 function cambiarBoton(flag){
-
     if(!flag){
         flag = true ? btnsBox.innerHTML = pauseIcon : "";
         document.getElementById("timerStopBtn").addEventListener("click", () =>{pausarTiempo()});
@@ -215,6 +216,42 @@ function setearModo(list,typeSelected){
     
 }
 
+// Funcion para actualizar las estadisticas
+
+/* const getFecha = () =>{
+    let fecha = `${new Date().getDate()}/${new Date().getMonth()+1}/${new Date().getFullYear()}`;
+    return fecha;
+}
+
+let actualDate = getFecha();
+
+const setList = (list) => {localStorage.setItem("listado", JSON.stringify(list))};
+
+function actualizarEstadistica(modo){
+    let getList = JSON.parse(localStorage.getItem("listado"))
+    let fechaTrabajo = getFecha();
+    getList.forEach((e)=>{
+        if((progresoPom.length === 0) && (e.estadisticasPorFecha == "") && (e.opcion == modo)){
+            e.estadisticasPorFecha.push({
+                fecha: fechaTrabajo,
+                pomodorosCompletados: 0,
+                tiempoTrabajado: 0
+            })
+        }
+        e.estadisticasPorFecha.forEach((elemento)=>{
+            if((elemento.fecha == fechaTrabajo) && (progresoPom.findLast((e)=>e) === "W")){
+                elemento.pomodorosCompletados += 1;
+                elemento.tiempoTrabajado = elemento.pomodorosCompletados * e.tiempoPomodoro;
+            }
+        })
+        console.log(e.estadisticasPorFecha);
+    })
+
+    localStorage.removeItem('listado');
+    setList(getList);
+    
+}
+ */
 
 // LLAMADAS
 cambiarBoton(!isRunning);

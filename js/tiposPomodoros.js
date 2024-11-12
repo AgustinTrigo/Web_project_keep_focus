@@ -152,6 +152,7 @@ function insertContent(){
         </div>
     </div>
     <button id="seleccionar" class="card-btn custom-btn" onClick="guardarValores()">Guardar</button>
+    <button class="card-delete-btn" onClick="renderList(getList())"><i class="fa-regular fa-trash-can"></i></button>
     `
 }
 
